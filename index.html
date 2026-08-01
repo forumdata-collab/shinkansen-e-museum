@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-HK" dir="ltr">
+<html lang="zh-HK">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -138,6 +138,27 @@
   .alfax p { line-height: 1.8; opacity: 0.95; }
   .alfax .stat { display: inline-block; background: rgba(255,255,255,.15); border-radius: 12px; padding: 10px 18px; margin: 6px 6px 0 0; }
   .alfax .stat b { display: block; font-size: 1.2rem; }
+  /* Nose comparison (A) */
+  .nose-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
+  .nose-card { background: rgba(255,255,255,.12); border-radius: 16px; padding: 18px; text-align: center; }
+  .nose-card h4 { margin: 0 0 4px; font-size: 1.05rem; }
+  .nose-card .nose-label { font-size: .82rem; opacity: .85; margin: 0 0 10px; }
+  .nose-card small { display: block; margin-top: 10px; opacity: .8; font-size: .8rem; line-height: 1.5; }
+  .nose-visual { position: relative; width: 250px; height: 44px; margin: 8px auto; }
+  .nose-visual .n-body { position: absolute; right: 0; top: 7px; width: 72px; height: 30px; background: #fff; border-radius: 4px; }
+  .nose-visual .n-16 { position: absolute; right: 72px; top: 7px; width: 68px; height: 30px; background: #ffd54f; clip-path: polygon(0 0, 100% 32%, 100% 68%, 0 100%); }
+  .nose-visual .n-22 { position: absolute; right: 72px; top: 7px; width: 94px; height: 30px; background: #ffd54f; clip-path: polygon(0 0, 100% 38%, 100% 62%, 0 100%); }
+  .nose-visual .n-rail { position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: rgba(255,255,255,.35); border-radius: 2px; }
+  @media (max-width: 768px) { .nose-compare { grid-template-columns: 1fr; } }
+  /* Quiz tabs (C) */
+  .quiz-tabs { display: flex; gap: 10px; margin-bottom: 14px; }
+  .quiz-tab {
+    background: #eef3f8; border: 2px solid #d0dbe8; border-radius: 10px;
+    padding: 9px 20px; cursor: pointer; font-size: .95rem; font-weight: 700;
+    font-family: inherit; color: #0b3d91; transition: .2s;
+  }
+  .quiz-tab:hover { background: #dbe8f7; }
+  .quiz-tab.active { background: #0b3d91; color: #fff; border-color: #0b3d91; }
   /* Lightbox */
   #lightbox {
     display: none; position: fixed; z-index: 999; top: 0; left: 0;
@@ -362,6 +383,24 @@
       • <b>北海道試車</b> — 2020年2月首次行駛北海道新幹線，為 2031 札幌延伸做嚴寒測試<br>
       • <b>窗戶實驗</b> — 每卡用唔同大小/形狀車窗測試高速噪音（5號車全無窗，寫住大型 ALFA-X 字樣）
     </p>
+    <h3 style="margin-top:22px">🔀 雙鼻型對比 — 同一列車、兩種設計</h3>
+    <p>點解要同時測試兩種車鼻？因為要收集 <b>兩種壓力波緩解方案</b>嘅數據：
+      短鼻喺高風速下更易產生隧道微氣壓波（Tunnel Boom），長鼻則有效降低隧道出口嘅爆破聲。
+      一列車兩頭做對照實驗，效率加倍！</p>
+    <div class="nose-compare">
+      <div class="nose-card">
+        <h4>1號車 — 扁身鴨嘴型</h4>
+        <div class="nose-label">16 米 · 川崎重工製造 · 測試 400 km/h</div>
+        <div class="nose-visual"><div class="n-16"></div><div class="n-body"></div><div class="n-rail"></div></div>
+        <small>短鼻 + 扁身：集中驗證最高速嘅空氣動力極限</small>
+      </div>
+      <div class="nose-card">
+        <h4>10號車 — 劍狀頭型</h4>
+        <div class="nose-label">22 米 · 日立製作所製造 · 測試 320-340 km/h</div>
+        <div class="nose-visual"><div class="n-22"></div><div class="n-body"></div><div class="n-rail"></div></div>
+        <small>長鼻 + 劍狀：驗證隧道微氣壓波嘅緩解效果</small>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -458,8 +497,12 @@
 
 <section class="section">
   <h2 class="title">🧠 知識小測驗 — 你係咪小小工程師？</h2>
-  <p class="section-sub">睇完展覽，試下答啱幾多題！</p>
-  <div class="quiz-box" id="quizBox">
+  <p class="section-sub">先試入門級，再挑戰專家級！</p>
+  <div class="quiz-tabs">
+    <button class="quiz-tab active" id="tabEasy" onclick="switchQuiz('easy')">🌱 入門級</button>
+    <button class="quiz-tab" id="tabHard" onclick="switchQuiz('hard')">🚀 專家級</button>
+  </div>
+  <div class="quiz-box" id="quizEasy">
     <div class="quiz-q">
       <div class="qtext">1. 世界首款雙層新幹線係邊款？</div>
       <div class="quiz-opts">
@@ -479,7 +522,20 @@
       </div>
     </div>
     <div class="quiz-q">
-      <div class="qtext">3. ALFA-X 測試時速達到幾多？</div>
+      <div class="qtext">3. 點解冇「E9系」載客列車？</div>
+      <div class="quiz-opts">
+        <button class="quiz-btn" onclick="answer(this,false)">號碼唔好意頭</button>
+        <button class="quiz-btn" onclick="answer(this,true)">「9」字頭留俾試驗車／工程車</button>
+        <button class="quiz-btn" onclick="answer(this,false)">冇人設計過</button>
+        <button class="quiz-btn" onclick="answer(this,false)">E9 改咗名叫 E10</button>
+      </div>
+    </div>
+    <div class="quiz-result" id="quizResultEasy"></div>
+    <button class="quiz-btn" id="quizResetEasy" onclick="resetQuiz('easy')" style="display:none;margin-top:10px">🔄 再玩一次</button>
+  </div>
+  <div class="quiz-box" id="quizHard" style="display:none">
+    <div class="quiz-q">
+      <div class="qtext">1. ALFA-X 測試時速達到幾多？</div>
       <div class="quiz-opts">
         <button class="quiz-btn" onclick="answer(this,false)">320 km/h</button>
         <button class="quiz-btn" onclick="answer(this,false)">350 km/h</button>
@@ -488,25 +544,25 @@
       </div>
     </div>
     <div class="quiz-q">
-      <div class="qtext">4. 點解冇「E9系」載客列車？</div>
+      <div class="qtext">2. ALFA-X 10號車嘅劍狀車鼻有幾長？</div>
       <div class="quiz-opts">
-        <button class="quiz-btn" onclick="answer(this,false)">號碼唔好意頭</button>
-        <button class="quiz-btn" onclick="answer(this,true)">「9」字頭留俾試驗車／工程車</button>
-        <button class="quiz-btn" onclick="answer(this,false)">冇人設計過</button>
-        <button class="quiz-btn" onclick="answer(this,false)">E9 改咗名叫 E10</button>
+        <button class="quiz-btn" onclick="answer(this,false)">9米</button>
+        <button class="quiz-btn" onclick="answer(this,false)">15米</button>
+        <button class="quiz-btn" onclick="answer(this,false)">16米</button>
+        <button class="quiz-btn" onclick="answer(this,true)">22米</button>
       </div>
     </div>
     <div class="quiz-q">
-      <div class="qtext">5. 新幹線用咩供電系統？</div>
+      <div class="qtext">3. E10 由邊間海外設計團隊操刀？</div>
       <div class="quiz-opts">
-        <button class="quiz-btn" onclick="answer(this,true)">AC 25kV 架空電纜</button>
-        <button class="quiz-btn" onclick="answer(this,false)">DC 12V 電池</button>
-        <button class="quiz-btn" onclick="answer(this,false)">太陽能板</button>
-        <button class="quiz-btn" onclick="answer(this,false)">第三軌供電</button>
+        <button class="quiz-btn" onclick="answer(this,false)">Pininfarina（意大利）</button>
+        <button class="quiz-btn" onclick="answer(this,true)">tangerine（英國）</button>
+        <button class="quiz-btn" onclick="answer(this,false)">IDEO（美國）</button>
+        <button class="quiz-btn" onclick="answer(this,false)">Nendo（日本）</button>
       </div>
     </div>
-    <div class="quiz-result" id="quizResult"></div>
-    <button class="quiz-btn" id="quizReset" onclick="resetQuiz()" style="display:none;margin-top:10px">🔄 再玩一次</button>
+    <div class="quiz-result" id="quizResultHard"></div>
+    <button class="quiz-btn" id="quizResetHard" onclick="resetQuiz('hard')" style="display:none;margin-top:10px">🔄 再玩一次</button>
   </div>
 </section>
 
@@ -580,15 +636,18 @@
   noseSlider.addEventListener("input", updateSim);
   updateSim();
 
-  // === 知識小測驗 ===
-  let score = 0, answered = 0;
+  // === 知識小測驗（入門級 / 專家級） ===
+  const quizState = { easy: { score: 0, answered: 0 }, hard: { score: 0, answered: 0 } };
   function answer(btn, isCorrect) {
     if (btn.disabled) return;
+    const box = btn.closest(".quiz-box");
+    const level = box.id === "quizEasy" ? "easy" : "hard";
+    const st = quizState[level];
     const opts = btn.parentElement.querySelectorAll(".quiz-btn");
     opts.forEach(o => o.disabled = true);
     if (isCorrect) {
       btn.classList.add("correct");
-      score++;
+      st.score++;
     } else {
       btn.classList.add("wrong");
       // 顯示正確答案
@@ -596,28 +655,38 @@
         if (o.onclick.toString().includes("true")) o.classList.add("correct");
       });
     }
-    answered++;
-    if (answered === 5) {
-      const res = document.getElementById("quizResult");
+    st.answered++;
+    const total = box.querySelectorAll(".quiz-q").length;
+    if (st.answered === total) {
+      const res = document.getElementById("quizResult" + (level === "easy" ? "Easy" : "Hard"));
       res.style.display = "block";
       let msg, cls;
-      if (score === 5) { msg = "🏆 滿分！你係首席工程師！"; cls = "good"; }
-      else if (score >= 4) { msg = "🌟 好叻！你係小小工程師！"; cls = "good"; }
-      else if (score >= 3) { msg = "👍 唔錯！繼續努力！"; cls = "mid"; }
+      if (st.score === total) { msg = "🏆 滿分！你係首席工程師！"; cls = "good"; }
+      else if (st.score >= total - 1) { msg = "🌟 好叻！你係小小工程師！"; cls = "good"; }
+      else if (st.score >= 2) { msg = "👍 唔錯！繼續努力！"; cls = "mid"; }
       else { msg = "💪 再睇多次展覽，試多一次！"; cls = "bad"; }
       res.className = "quiz-result " + cls;
-      res.textContent = "你答啱 " + score + "/5 題 — " + msg;
-      document.getElementById("quizReset").style.display = "inline-block";
+      res.textContent = "你答啱 " + st.score + "/" + total + " 題 — " + msg;
+      document.getElementById("quizReset" + (level === "easy" ? "Easy" : "Hard")).style.display = "inline-block";
     }
   }
-  function resetQuiz() {
-    score = 0; answered = 0;
-    document.querySelectorAll(".quiz-btn").forEach(o => {
+  function switchQuiz(level) {
+    const easy = level === "easy";
+    document.getElementById("quizEasy").style.display = easy ? "block" : "none";
+    document.getElementById("quizHard").style.display = easy ? "none" : "block";
+    document.getElementById("tabEasy").classList.toggle("active", easy);
+    document.getElementById("tabHard").classList.toggle("active", !easy);
+  }
+  function resetQuiz(level) {
+    const st = quizState[level];
+    st.score = 0; st.answered = 0;
+    const box = document.getElementById(level === "easy" ? "quizEasy" : "quizHard");
+    box.querySelectorAll(".quiz-btn").forEach(o => {
       o.disabled = false;
       o.classList.remove("correct", "wrong");
     });
-    document.getElementById("quizResult").style.display = "none";
-    document.getElementById("quizReset").style.display = "none";
+    document.getElementById("quizResult" + (level === "easy" ? "Easy" : "Hard")).style.display = "none";
+    document.getElementById("quizReset" + (level === "easy" ? "Easy" : "Hard")).style.display = "none";
   }
 </script>
 </body>
