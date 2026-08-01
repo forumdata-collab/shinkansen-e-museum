@@ -81,6 +81,46 @@ html
   /* STEM box */
   .stem { background: #fff8e1; border-radius: 20px; padding: 25px; font-size: 1.05rem; line-height: 1.8; }
   .stem h3 { color: #0b3d91; }
+  /* Glossary */
+  .glossary { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .gterm {
+    background: white; border-radius: 16px; padding: 18px; box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    border-left: 5px solid #1565c0;
+  }
+  .gterm h4 { margin: 0 0 6px; color: #0b3d91; font-size: 1rem; }
+  .gterm p { margin: 0; font-size: 0.88rem; color: #555; line-height: 1.6; }
+  /* Quiz */
+  .quiz-box { background: white; border-radius: 20px; padding: 25px; box-shadow: 0 8px 20px rgba(0,0,0,.1); }
+  .quiz-q { margin-bottom: 20px; }
+  .quiz-q .qtext { font-weight: 700; margin-bottom: 10px; color: #0b3d91; }
+  .quiz-opts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn {
+    background: #eef3f8; border: 2px solid #d0dbe8; border-radius: 10px;
+    padding: 8px 16px; cursor: pointer; font-size: 0.9rem; font-family: inherit;
+    transition: .2s;
+  }
+  .quiz-btn:hover { background: #dbe8f7; }
+  .quiz-btn.correct { background: #c8e6c9; border-color: #4caf50; }
+  .quiz-btn.wrong { background: #ffcdd2; border-color: #f44336; }
+  .quiz-btn:disabled { cursor: default; }
+  .quiz-result { margin-top: 16px; font-size: 1.1rem; font-weight: 700; text-align: center; padding: 16px; border-radius: 12px; display: none; }
+  .quiz-result.good { background: #c8e6c9; color: #1b5e20; }
+  .quiz-result.mid { background: #fff9c4; color: #f57f17; }
+  .quiz-result.bad { background: #ffcdd2; color: #b71c1c; }
+  /* Simulator */
+  .sim-box { background: white; border-radius: 20px; padding: 25px; box-shadow: 0 8px 20px rgba(0,0,0,.1); }
+  .sim-controls { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .sim-controls input[type=range] { flex: 1; min-width: 200px; }
+  .sim-value { font-size: 1.3rem; font-weight: 900; color: #0b3d91; }
+  .sim-track { position: relative; height: 90px; background: linear-gradient(to top, #eef3f8, #dbe8f7); border-radius: 12px; overflow: hidden; margin-bottom: 12px; }
+  .sim-train { position: absolute; bottom: 0; left: 10px; height: 60px; display: flex; align-items: center; }
+  .sim-train .body { background: #1565c0; height: 30px; border-radius: 4px; }
+  .sim-train .nose { background: linear-gradient(135deg, #1976d2, #0d47a1); clip-path: polygon(0 0, 100% 25%, 100% 75%, 0 100%); height: 30px; }
+  .sim-stats { display: flex; gap: 24px; flex-wrap: wrap; }
+  .sim-stat { text-align: center; }
+  .sim-stat b { display: block; font-size: 1.2rem; color: #e53935; }
+  .sim-stat span { font-size: 0.8rem; color: #888; }
+  .sim-ref { font-size: 0.82rem; color: #888; margin-top: 10px; }
   /* Table */
   .table-wrap { overflow-x: auto; background: white; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,.08); }
   table { width: 100%; border-collapse: collapse; background: white; font-size: 0.95rem; min-width: 800px; }
@@ -182,6 +222,7 @@ html
 </tbody>
 </table>
 </div>
+<p style="color:#888;font-size:0.85rem;margin-top:10px">📌 Common Shinkansen technology: Gauge 1,435mm (standard rail)・Power supply AC 25kV (50/60Hz)・Signal ATC automatic train control</p>
 </section>
 <section class="section">
 <h2 class="title">🚄 E1-E8 front display card</h2>
@@ -310,12 +351,103 @@ html
 <h3>Question 3: Do you want a double-decker train?</h3>E1/E4 MAX uses vertical space to accommodate twice as many people.<br/>However, a double-decker car has a high center of gravity and needs to turn slower - so after E5, it switched to the "long nose + high speed" strategy.</div>
 </section>
 <section class="section">
+<h2 class="title">🧪 Resistance Lab — try it out</h2>
+<p class="section-sub">Pull the slider to adjust the length of the front end and see how the resistance point changes.</p>
+<div class="sim-box">
+<div class="sim-controls">
+<label for="noseSlider"><b>Head length:</b></label>
+<input id="noseSlider" max="22" min="3" step="0.5" type="range" value="9"/>
+<span class="sim-value" id="noseVal">9 meters</span>
+</div>
+<div class="sim-track">
+<div class="sim-train" id="simTrain">
+<div class="nose" id="simNose"></div>
+<div class="body" id="simBody"></div>
+</div>
+</div>
+<div class="sim-stats">
+<div class="sim-stat"><b id="dragVal">100%</b><span>air resistance (relative)</span></div>
+<div class="sim-stat"><b id="noiseVal">in</b><span>tunnel noise</span></div>
+<div class="sim-stat"><b id="speedVal">275</b><span>Possible maximum speed (km/h)</span></div>
+</div>
+<p class="sim-ref">Real train reference: E4 short nose 240km/h | E1 240km/h | E8 arrow nose 9 meters 300km/h | E5 15 meters 320km/h | ALFA-X 22 meters 400km/h (test)</p>
+</div>
+</section>
+<section class="section">
+<h2 class="title">🎓 Professional vocabulary list</h2>
+<p class="section-sub">Quick understanding of STEM terms</p>
+<div class="glossary">
+<div class="gterm"><h4>fluid mechanics</h4><p>The science of how air and liquids flow. The long nose design of the Shinkansen relies on it to reduce resistance and noise.</p></div>
+<div class="gterm"><h4>Active suspension system</h4><p>Sensors and computers are used to actively control the shock absorbers, automatically tilting the body when cornering, so that passengers are not subject to centrifugal force.</p></div>
+<div class="gterm"><h4>Wheel and Rail Mechanics</h4><p>Study the mechanics of wheel and rail contact points, affecting stability, wear and safety.</p></div>
+<div class="gterm"><h4>Gauge</h4><p>The distance between the insides of two rails. The Shinkansen uses 1,435mm standard gauge; the Mini Shinkansen is a narrow gauge local line converted to standard gauge.</p></div>
+<div class="gterm"><h4>ATC (Automatic Train Control)</h4><p>A safety system that automatically monitors train speed and automatically brakes if it exceeds speed to prevent collisions.</p></div>
+<div class="gterm"><h4>SiC frequency converter</h4><p>Silicon carbide semiconductor technology is more energy-efficient and has better heat dissipation than traditional silicon. E10 will use it to improve efficiency.</p></div>
+</div>
+</section>
+<section class="section">
+<h2 class="title">🧠 Knowledge Quiz - Are you a little engineer?</h2>
+<p class="section-sub">After watching the exhibition, try to answer a few questions!</p>
+<div class="quiz-box" id="quizBox">
+<div class="quiz-q">
+<div class="qtext">1. The world’s first double-decker Shinkansen with side edges?</div>
+<div class="quiz-opts">
+<button class="quiz-btn" onclick="answer(this,false)">E5 Hayabusa</button>
+<button class="quiz-btn" onclick="answer(this,true)">E1 Max</button>
+<button class="quiz-btn" onclick="answer(this,false)">E8 Tsubasa</button>
+<button class="quiz-btn" onclick="answer(this,false)">E6 Komachi</button>
+</div>
+</div>
+<div class="quiz-q">
+<div class="qtext">2. How long is the long nose of the E5?</div>
+<div class="quiz-opts">
+<button class="quiz-btn" onclick="answer(this,false)">5 meters</button>
+<button class="quiz-btn" onclick="answer(this,false)">9 meters</button>
+<button class="quiz-btn" onclick="answer(this,true)">15 meters</button>
+<button class="quiz-btn" onclick="answer(this,false)">22 meters</button>
+</div>
+</div>
+<div class="quiz-q">
+<div class="qtext">3. What is the test speed of ALFA-X?</div>
+<div class="quiz-opts">
+<button class="quiz-btn" onclick="answer(this,false)">320km/h</button>
+<button class="quiz-btn" onclick="answer(this,false)">350km/h</button>
+<button class="quiz-btn" onclick="answer(this,true)">400km/h</button>
+<button class="quiz-btn" onclick="answer(this,false)">450km/h</button>
+</div>
+</div>
+<div class="quiz-q">
+<div class="qtext">4. Can you tell me if there are any "E9 series" passenger trains?</div>
+<div class="quiz-opts">
+<button class="quiz-btn" onclick="answer(this,false)">Sorry for the number</button>
+<button class="quiz-btn" onclick="answer(this,true)">The prefix "9" is reserved for test vehicles/engineering vehicles</button>
+<button class="quiz-btn" onclick="answer(this,false)">No one has designed it</button>
+<button class="quiz-btn" onclick="answer(this,false)">E9 was renamed E10</button>
+</div>
+</div>
+<div class="quiz-q">
+<div class="qtext">5. What power supply system does the Shinkansen use?</div>
+<div class="quiz-opts">
+<button class="quiz-btn" onclick="answer(this,true)">AC 25kV overhead cable</button>
+<button class="quiz-btn" onclick="answer(this,false)">DC 12V battery</button>
+<button class="quiz-btn" onclick="answer(this,false)">solar panel</button>
+<button class="quiz-btn" onclick="answer(this,false)">Third rail power supply</button>
+</div>
+</div>
+<div class="quiz-result" id="quizResult"></div>
+<button class="quiz-btn" id="quizReset" onclick="resetQuiz()" style="display:none;margin-top:10px">🔄 Play again</button>
+</div>
+</section>
+<section class="section">
 <h2 class="title">🌏 Japan Shinkansen vs Hong Kong Railway</h2>
 <div class="table-wrap">
 <table>
 <tr><th>Project</th><th>Shinkansen</th><th>Hong Kong Railway</th></tr>
 <tr><td>Main purpose</td><td>High speed travel between cities</td><td>city commuting</td></tr>
 <tr><td>speed</td><td>320 km/h class</td><td>about 80 km/h</td></tr>
+<tr><td>Gauge</td><td>1,435mm standard rail</td><td>1,432mm (near standard rail)</td></tr>
+<tr><td>Power supply system</td><td>AC 25kV overhead cable</td><td>DC 1,500V (Downtown Line)/AC 25kV (East Rail Line)</td></tr>
+<tr><td>signaling system</td><td>ATC automatic train control</td><td>CBTC Communication Train Control (Downtown Line)</td></tr>
 <tr><td>Engineering focus</td><td>High speed, safety, low noise</td><td>High density and on time</td></tr>
 <tr><td>route network</td><td>Cross-prefecture city (Tokyo ~ Shin-Aomori 675km)</td><td>Inner city (about 250km)</td></tr>
 </table>
@@ -338,6 +470,77 @@ html
   document.addEventListener("keydown", function(e) {
     if (e.key === "Escape") closeImg();
   });
+
+  // === 阻力模擬器 ===
+  const noseSlider = document.getElementById("noseSlider");
+  const noseVal = document.getElementById("noseVal");
+  const simNose = document.getElementById("simNose");
+  const simBody = document.getElementById("simBody");
+  const dragVal = document.getElementById("dragVal");
+  const noiseVal = document.getElementById("noiseVal");
+  const speedVal = document.getElementById("speedVal");
+
+  function updateSim() {
+    const len = parseFloat(noseSlider.value);
+    noseVal.textContent = len + " 米";
+    // 視覺：鼻長 3m → 20px, 22m → 140px
+    const nosePx = 20 + (len - 3) * (120 / 19);
+    simNose.style.width = nosePx + "px";
+    simBody.style.width = 80 + "px";
+    // 物理模型（簡化）：阻力 ∝ 1/√(鼻長)，基準 9m = 100%
+    const drag = Math.round(100 * Math.sqrt(9 / len));
+    dragVal.textContent = drag + "%";
+    // 噪音等級
+    if (len < 6) noiseVal.textContent = "高";
+    else if (len < 12) noiseVal.textContent = "中";
+    else if (len < 18) noiseVal.textContent = "低";
+    else noiseVal.textContent = "極低";
+    // 可行速度（簡化）
+    const spd = Math.min(400, Math.round(240 + (len - 3) * 8.2));
+    speedVal.textContent = spd;
+  }
+  noseSlider.addEventListener("input", updateSim);
+  updateSim();
+
+  // === 知識小測驗 ===
+  let score = 0, answered = 0;
+  function answer(btn, isCorrect) {
+    if (btn.disabled) return;
+    const opts = btn.parentElement.querySelectorAll(".quiz-btn");
+    opts.forEach(o => o.disabled = true);
+    if (isCorrect) {
+      btn.classList.add("correct");
+      score++;
+    } else {
+      btn.classList.add("wrong");
+      // 顯示正確答案
+      opts.forEach(o => {
+        if (o.onclick.toString().includes("true")) o.classList.add("correct");
+      });
+    }
+    answered++;
+    if (answered === 5) {
+      const res = document.getElementById("quizResult");
+      res.style.display = "block";
+      let msg, cls;
+      if (score === 5) { msg = "🏆 滿分！你係首席工程師！"; cls = "good"; }
+      else if (score >= 4) { msg = "🌟 好叻！你係小小工程師！"; cls = "good"; }
+      else if (score >= 3) { msg = "👍 唔錯！繼續努力！"; cls = "mid"; }
+      else { msg = "💪 再睇多次展覽，試多一次！"; cls = "bad"; }
+      res.className = "quiz-result " + cls;
+      res.textContent = "你答啱 " + score + "/5 題 — " + msg;
+      document.getElementById("quizReset").style.display = "inline-block";
+    }
+  }
+  function resetQuiz() {
+    score = 0; answered = 0;
+    document.querySelectorAll(".quiz-btn").forEach(o => {
+      o.disabled = false;
+      o.classList.remove("correct", "wrong");
+    });
+    document.getElementById("quizResult").style.display = "none";
+    document.getElementById("quizReset").style.display = "none";
+  }
 </script>
 </body>
 </html>
