@@ -1,0 +1,325 @@
+أتش تي أم أل
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>معرض اليابان لتكنولوجيا سلسلة شينكانسن E STEM | متحف شينكانسن إي سيريز للعلوم والتكنولوجيا والهندسة والرياضيات</title>
+<style>
+  body {
+    font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+    margin: 0; background: #f4f7fb; color: #222;
+  }
+  /* Topbar */
+  .topbar {
+    background: #0b3d91; display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 24px; gap: 12px; flex-wrap: wrap;
+  }
+  .topbar a.back { color: #b8cdf0; text-decoration: none; font-size: 0.9rem; }
+  .topbar a.back:hover { color: #fff; }
+  .topbar-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .topbar select {
+    background: rgba(255,255,255,0.12); color: #fff;
+    border: 1px solid rgba(255,255,255,0.25); border-radius: 8px;
+    padding: 8px 12px; font-size: 0.8rem; font-family: inherit;
+  }
+  .topbar select option { color: #222; }
+  .kofi-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 9px 20px; background: #ff5e5b; color: #fff;
+    text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.85rem;
+  }
+  .kofi-btn svg { width: 16px; height: 16px; }
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, #0b3d91, #1e88e5);
+    color: white; padding: 60px 20px; text-align: center;
+  }
+  .hero h1 { font-size: 44px; margin-bottom: 10px; }
+  .hero p { font-size: 22px; opacity: 0.9; }
+  .train { font-size: 80px; animation: moveTrain 6s infinite linear; display: inline-block; }
+  @keyframes moveTrain {
+    0% { transform: translateX(-40vw); }
+    100% { transform: translateX(40vw); }
+  }
+  /* Sections */
+  .section { max-width: 1100px; margin: auto; padding: 40px 20px; }
+  .title { font-size: 32px; border-left: 10px solid #e53935; padding-left: 15px; margin-top: 0; }
+  .section-sub { color: #666; margin: -8px 0 20px; padding-left: 25px; }
+  /* Timeline */
+  .timeline { display: flex; overflow-x: auto; gap: 20px; padding-bottom: 10px; }
+  .year {
+    background: white; min-width: 170px; padding: 20px; border-radius: 20px;
+    box-shadow: 0 5px 15px #ccc; transition: .3s; flex-shrink: 0;
+  }
+  .year:hover { transform: translateY(-10px); }
+  .year h2 { margin: 0 0 8px; color: #0b3d91; }
+  .year .yr { color: #e53935; font-weight: 700; }
+  .year small { color: #888; display: block; margin-top: 6px; }
+  /* Grid */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+  .card {
+    background: white; border-radius: 20px; padding: 0 0 25px; overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,.12); transition: .3s;
+  }
+  .card:hover { transform: scale(1.03); box-shadow: 0 12px 28px rgba(0,0,0,.18); }
+  .card img {
+    width: 100%; height: 180px; object-fit: cover; cursor: pointer;
+    transition: transform .4s; display: block;
+  }
+  .card:hover img { transform: scale(1.06); }
+  .card-body { padding: 20px 22px 0; }
+  .card h2 { margin: 0 0 8px; color: #0b3d91; }
+  .card p { font-size: 0.95rem; line-height: 1.6; }
+  .badge {
+    display: inline-block; background: #1565c0; color: white;
+    padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; margin-bottom: 10px;
+  }
+  .badge-retired { background: #757575; }
+  .badge-concept { background: #6a1b9a; }
+  .badge-future { background: #e53935; }
+  .badge-test { background: #00897b; }
+  /* STEM box */
+  .stem { background: #fff8e1; border-radius: 20px; padding: 25px; font-size: 1.05rem; line-height: 1.8; }
+  .stem h3 { color: #0b3d91; }
+  /* Table */
+  .table-wrap { overflow-x: auto; background: white; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,.08); }
+  table { width: 100%; border-collapse: collapse; background: white; font-size: 0.95rem; min-width: 800px; }
+  td, th { padding: 12px 14px; border-bottom: 1px solid #e3e8ef; text-align: left; }
+  th { background: #1565c0; color: white; position: sticky; top: 0; }
+  tr:hover td { background: #f0f6ff; }
+  .rowname { font-weight: 700; color: #0b3d91; }
+  .retired { color: #757575; }
+  /* ALFA-X highlight */
+  .alfax {
+    background: linear-gradient(135deg, #0b3d91, #00897b);
+    color: white; border-radius: 20px; padding: 28px; margin-top: 20px;
+  }
+  .alfax h3 { margin-top: 0; font-size: 1.4rem; }
+  .alfax p { line-height: 1.8; opacity: 0.95; }
+  .alfax .stat { display: inline-block; background: rgba(255,255,255,.15); border-radius: 12px; padding: 10px 18px; margin: 6px 6px 0 0; }
+  .alfax .stat b { display: block; font-size: 1.2rem; }
+  /* Lightbox */
+  #lightbox {
+    display: none; position: fixed; z-index: 999; top: 0; left: 0;
+    width: 100%; height: 100%; background: rgba(0,0,0,.88);
+    align-items: center; justify-content: center; cursor: pointer;
+  }
+  #lightbox img { max-width: 92%; max-height: 92%; border-radius: 16px; }
+  .close {
+    position: absolute; top: 16px; right: 32px; font-size: 48px;
+    color: white; cursor: pointer; line-height: 1;
+  }
+  /* Footer */
+  footer {
+    background: #111; color: white; text-align: center; padding: 30px; font-size: 0.9rem;
+  }
+  footer .credit { opacity: 0.6; font-size: 0.8rem; margin-top: 8px; }
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 32px; }
+    .hero p { font-size: 18px; }
+    .title { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+<div class="topbar">
+<a class="back" href="https://forumdata-collab.github.io/">← العودة إلى الصفحة الرئيسية</a>
+<div class="topbar-right">
+<select aria-label="Language" id="lang-switch" onchange="location.href=this.value">
+<option="" value="https://forumdata-collab.github.io/shinkansen-e-museum/">繁體中文（香港）</option>
+<option value="https://forumdata-collab.github.io/shinkansen-e-museum/en/">English (US)</option>
+<option value="https://forumdata-collab.github.io/shinkansen-e-museum/zh-CN/">简体中文</option>
+<option value="https://forumdata-collab.github.io/shinkansen-e-museum/zh-TW/">繁體中文（台灣）</option>
+<option value="https://forumdata-collab.github.io/shinkansen-e-museum/ar/" selected>العربية</option>
+</select>
+<a class="kofi-btn" href="https://ko-fi.com/forumdata" target="_blank">
+<svg fill="white" viewbox="0 0 24 24"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.47.06 8.529-1.723 8.649-4.916zm-11.638 8.978c-2.252 0-4.078-1.826-4.078-4.078s1.826-4.078 4.078-4.078 4.078 1.826 4.078 4.078-4.078 4.078z"></path></svg>☕ إشتري لي فنجاناً من القهوة</a>
+</div>
+</div>
+<section class="hero">
+<div class="train">🚄</div>
+<h1>معرض تكنولوجيا سلسلة شينكانسن اليابانية</h1>
+<p>قطار · 30 عامًا من التطور الهندسي · رحلة استكشاف العلوم والتكنولوجيا والهندسة والرياضيات (STEM).</p>
+</section>
+<section class="section">
+<h2 class="title">🚉 الجدول الزمني لتطور شينكانسن</h2>
+<p class="section-sub">تم افتتاح توهوكو شينكانسن في عام 1982 - وهو أطول طريق شينكانسن في منطقة شرق اليابان (طوكيو ~ شين أوموري)</p>
+<div class="timeline">
+<div class="year"><h2>ه1</h2><span class="yr">1994-2012</span>ثورة القطارات ذات الطابقين<small>متقاعد</small></div>
+<div class="year"><h2>ه2</h2><span class="yr">1997-</span>السرعة والراحة<small>قيد التشغيل</small></div>
+<div class="year"><h2>ه3</h2><span class="yr">1997-</span>ميني شينكانسن<small>ياماغاتا/اكيتا</small></div>
+<div class="year"><h2>هـ4</h2><span class="yr">1997-2021</span>السعة القصوى للركاب<small>متقاعد</small></div>
+<div class="year"><h2>ه5</h2><span class="yr">2011-</span>سرعة عالية 320 كم/ساعة<small>قيد التشغيل</small></div>
+<div class="year"><h2>ه6</h2><span class="yr">2013-</span>اكيتا شينكانسن الحمراء<small>قيد التشغيل</small></div>
+<div class="year"><h2>ه7</h2><span class="yr">2014-</span>هوكوريكو الفخامة والراحة<small>قيد التشغيل</small></div>
+<div class="year"><h2>ه8</h2><span class="yr">2024-</span>الجيل الجديد من الطرق السريعة المحلية<small>قيد التشغيل</small></div>
+<div class="year"><h2>E956</h2><span class="yr">2019-اختبار</span>ألفا-إكس 400 كم/ساعة<small>القطار التجريبي</small></div>
+<div class="year"><h2>E9/E10</h2><span class="yr">مستقبل</span>القطار الذكي بالذكاء الاصطناعي<small>مرحلة المفهوم</small></div>
+</div>
+</section>
+<section class="section">
+<h2 class="title">📊 جدول مقارنة مواصفات سلسلة E</h2>
+<p class="section-sub">السرعة · سعة الركاب · المغادرة/التقاعد · التجميع - في لمحة</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>نموذج</th><th>السرعة القصوى</th><th>سعة الركاب</th><th>ترجمة</th>
+<th>بداية</th><th>متقاعد</th><th>الطرق الرئيسية</th><th>ميزة</th>
+</tr>
+</thead>
+<tbody>
+<tr><td class="rowname">E1 ماكس</td><td>240 كم/ساعة</td><td>1,234 شخص</td><td>12 両</td><td>يوليو 1994</td><td class="retired">سبتمبر 2012</td><td>توهوكو/جويت</td><td>أول قطار شينكانسن ذو طابقين في العالم</td></tr>
+<tr><td class="rowname">ه2</td><td>275 كم/ساعة</td><td>حوالي 800 شخص</td><td>8/10</td><td>1997</td><td class="retired">—</td><td>توهوكو / هوكوريكو</td><td>توازن عالي السرعة ومقاومة الزلازل</td></tr>
+<tr><td class="rowname">إي 3 كوماتشي</td><td>275 كم/ساعة</td><td>حوالي 340 شخصا</td><td>6/7 両</td><td>يونيو 1997</td><td class="retired">—</td><td>ياماغاتا/أكيتا (ميني)</td><td>الطريق السريع + اتصال مباشر بالسكك الحديدية المحلية</td></tr>
+<tr><td class="rowname">E4 ماكس</td><td>240 كم/ساعة</td><td>حوالي 1600 شخص</td><td>8両×2</td><td>ديسمبر 1997</td><td class="retired">أكتوبر 2021</td><td>توهوكو/جويت</td><td>سطح مزدوج مع أقصى سعة للركاب</td></tr>
+<tr><td class="rowname">E5 هايابوسا</td><td>320 كم/ساعة</td><td>731 شخصا</td><td>10 両</td><td>مارس 2011</td><td class="retired">—</td><td>توهوكو/هوكايدو</td><td>أنف طويل 15 مترًا・Gran Class</td></tr>
+<tr><td class="rowname">E6 كوماتشي</td><td>320 كم/ساعة</td><td>حوالي 400 شخص</td><td>7両</td><td>مارس 2013</td><td class="retired">—</td><td>اكيتا (مصغرة)</td><td>Akane・من خلال الجري</td></tr>
+<tr><td class="rowname">ه7</td><td>260 كم/ساعة</td><td>حوالي 930 شخصا</td><td>12 両</td><td>مارس 2014</td><td class="retired">—</td><td>هوكوريكو</td><td>تقنية الراحة・التعليق النشط</td></tr>
+<tr><td class="rowname">E8 تسوباسا</td><td>300 كم/ساعة</td><td>حوالي 340 شخصا</td><td>7両</td><td>16 مارس 2024</td><td class="retired">—</td><td>ياماغاتا (ميني)</td><td>أنف على شكل سهم بطول 9 أمتار، أصفر زعفراني</td></tr>
+<tr><td class="rowname">E956 ألفا-X</td><td>400 كم/ساعة<small>(امتحان)</small></td><td>للتجربة</td><td>10 両</td><td>مايو 2019 (لاول مرة)</td><td class="retired">تحت الاختبار</td><td>شمال شرق البلاد</td><td>التحقق من التكنولوجيا التجارية المستقبلية بسرعة 360 كم/ساعة</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="section">
+<h2 class="title">🚄 كارت العرض الامامي E1-E8</h2>
+<p class="section-sub">💡اضغط على الصورة لتكبيرها</p>
+<div class="grid">
+<div class="card">
+<img alt="E1 MAX 雙層新幹線" onclick="openImg(this.src)" src="https://img.hermesagent.de5.net/shinkansen-e/e1.jpg"/>
+<div class="card-body">
+<h2>E1 ماكس</h2>
+<span class="badge badge-retired">ثورة الطبقة المزدوجة · متقاعد</span>
+<p>أول قطار شينكانسن ذو طابقين في العالم (1994-2012).<br/>STEM: استخدام المساحة الرأسية لزيادة سعة الركاب.</p>
+</div>
+</div>
+<div class="card">
+<img alt="E2 新幹線" onclick="openImg(this.src)" src="https://img.hermesagent.de5.net/shinkansen-e/e2.jpg"/>
+<div class="card-body">
+<h2>ه2</h2>
+<span class="badge">توازن عالي السرعة</span>
+<p>تم استثماره في عام 1997 لتحسين السرعة والراحة ومقاومة الزلازل.</p>
+</div>
+</div>
+<div class="card">
+<img alt="E3 Komachi 迷你新幹線" onclick="openImg(this.src)" src="https://img.hermesagent.de5.net/shinkansen-e/e3.jpg"/>
+<div class="card-body">
+<h2>إي 3 كوماتشي</h2>
+<span class="badge">ميني شينكانسن</span>
+<p>يتم دمج السكك الحديدية عالية السرعة مع السكك الحديدية المحلية ويتم تشغيلها من خلالها.<br/>STEM: تعديل المقياس (مقياس ضيق → مقياس قياسي).</p>
+</div>
+</div>
+<div class="card">
+<img alt="E4 MAX 雙層新幹線" onclick="openImg(this.src)" src="https://img.hermesagent.de5.net/shinkansen-e/e4.jpg"/>
+<div class="card-body">
+<h2>E4 ماكس</h2>
+<span class="badge badge-retired">ملك الركاب · متقاعد</span>
+<p>ما يقرب من 1600 شخص في تصميم ذو طابقين (1997-2021).<br/>STEM: الاستخدام النهائي للمساحة العمودية.</p>
+</div>
+</div>
+<div class="card">
+<img alt="E5 Hayabusa 新幹線" onclick="openImg(this.src)" src="https://img.hermesagent.de5.net/shinkansen-e/e5.jpg"/>
+<div class="card-body">
+<h2>E5 هايابوسا</h2>
+<span class="badge">320 كم/ساعة</span>
+<p>يقلل الأنف الذي يبلغ طوله 15 مترًا من مقاومة الهواء وضوضاء النفق.<br/>العلوم والتكنولوجيا والهندسة والرياضيات: ميكانيكا الموائع.</p>
+</div>
+</div>
+<div class="card">
+<img alt="E6 Komachi 秋田新幹線" onclick="openImg(this.src)" src="https://img.hermesagent.de5.net/shinkansen-e/e6.jpg"/>
+<div class="card-body">
+<h2>E6 كوماتشي</h2>
+<span class="badge">اكيتا شينكانسن</span>
+<p>طلاء أحمر أكاني، سرعة عالية + طريق جبلي.<br/>STEM: ميكانيكا السكك الحديدية.</p>
+</div>
+</div>
+<div class="card">
+<img alt="E7 北陸新幹線" onclick="openImg(this.src)" src="https://img.hermesagent.de5.net/shinkansen-e/e7.jpg"/>
+<div class="card-body">
+<h2>ه7</h2>
+<span class="badge">تكنولوجيا الراحة</span>
+<p>ممثل هوكوريكو شينكانسن.<br/>STEM: نظام التعليق النشط.</p>
+</div>
+</div>
+<div class="card">
+<img alt="E8 Tsubasa 新幹線" onclick="openImg(this.src)" src="https://img.hermesagent.de5.net/shinkansen-e/e8.jpg"/>
+<div class="card-body">
+<h2>E8 تسوباسا</h2>
+<span class="badge">جيل جديد</span>
+<p>سيتم وضعه في الخدمة في 16 مارس 2024.<br/>STEM: أنف على شكل سهم بطول 9 أمتار + تصميم موفر للطاقة ومنخفض الضوضاء.</p>
+</div>
+</div>
+<div class="card">
+<div class="card-body" style="padding-top:20px">
+<div class="trainfront" style="font-size:60px;text-align:center">🤖🚄</div>
+<h2 style="text-align:center;margin-top:10px">ه9</h2>
+<span class="badge badge-concept">مفهوم الذكاء الاصطناعي</span>
+<p>قطار مفهوم الصيانة وإدارة الطاقة الذكي.<br/>STEM: تطبيقات الذكاء الاصطناعي.</p>
+</div>
+</div>
+<div class="card">
+<div class="card-body" style="padding-top:20px">
+<div class="trainfront" style="font-size:60px;text-align:center">🚀</div>
+<h2 style="text-align:center;margin-top:10px">ه10</h2>
+<span class="badge badge-future">قطار المستقبل</span>
+<p>ALFA-X هو قطار تجاري مستقبلي للتكنولوجيا المثبتة.<br/>STEM: الخيال التكنولوجي المستقبلي.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 class="title">🧪 ALFA-X — مختبر شينكانسن المستقبلي</h2>
+<p class="section-sub">سلسلة E956 · قطار تجريبي مكون من 10 سيارات · أسرع منصة لاختبار السكك الحديدية في اليابان</p>
+<div class="alfax">
+<h3>🚄 E956 "ALFA-X" (ظهرت لأول مرة في عام 2019)</h3>
+<p>ALFA-X (المختبرات المتقدمة لنشاط الخطوط الأمامية في تجربة السكك الحديدية) هو أحد منتجات شركة JR East<b>تشغيل تجاري مستقبلي بسرعة 360 كم/ساعة</b>تم إطلاق القطار التجريبي المكون من 10 عربات بنجاح في 14 ديسمبر 2019.<b>400 كم/ساعة</b>اختبار السرعة العالية – تحطيم الرقم القياسي لسرعة اختبار السكك الحديدية في اليابان.</p>
+<div>
+<span class="stat"><b>400 كم/ساعة</b>سرعة الاختبار</span>
+<span class="stat"><b>360 كم/ساعة</b>أهداف العمل</span>
+<span class="stat"><b>10 بطاقات</b>ترجمة</span>
+<span class="stat"><b>22 م</b>طول الأنف</span>
+<span class="stat"><b>نوع الأنف المزدوج</b>اختبار المقارنة</span>
+</div>
+<p style="margin-top:16px">أبرز مميزات العلوم والتكنولوجيا والهندسة والرياضيات:<br/>•<b>نوعان من الأنف</b>— تستخدم البطاقة 1 الأنف الجديد "على شكل زاوية"، وتستخدم البطاقة 10 الأنف "على شكل سهم" E5. وفي الوقت نفسه، يتم اختبار الأداء الديناميكي الهوائي ومقارنته.<br/>•<b>نظام التحكم بالاهتزازات الزلزالية</b>- تقليل مخاطر الاهتزاز والانحراف (هندسة مقاومة الزلازل)<br/>•<b>جسم مضاد للثلج</b>— حل مشكلة ثلوج الشتاء في شمال شرق الصين (علم المواد)<br/>•<b>تصميم للحد من الضوضاء</b>— زعانف عزل الصوت ببانتوجراف، بحث حول التحكم في الضوضاء بسرعة 400 كم/ساعة (الهندسة الصوتية)</p>
+</div>
+</section>
+<section class="section">
+<h2 class="title">🔬 معمل الهندسة STEM</h2>
+<div class="stem">
+<h3>السؤال 1: لماذا الواجهة الأمامية لـ E5 طويلة جدًا؟</h3>تدفق الهواء بسرعة عالية يخلق مقاومة.<br/><br/>تصميم الأنف الطويل:<br/>الهواء ← الفصل السلس ← تقليل الضوضاء ← توفير الطاقة<br/>(يبلغ طول أنف E5 15 مترًا؛ ويستخدم E8 أنفًا على شكل سهم بطول 9 أمتار؛ ويبلغ طول اختبار ALFA-X 22 مترًا)<hr/>
+<h3>السؤال 2: لماذا تحتاج القطارات إلى أنظمة التعليق؟</h3>تقليل الاهتزاز وجعل الركاب أكثر راحة.<br/>يمنع جهاز إمالة جسم السيارة القطار من التباطؤ كثيرًا عند المنعطفات.<hr/>
+<h3>السؤال 3: هل تريد قطارًا ذو طابقين؟</h3>يستخدم E1/E4 MAX مساحة رأسية لاستيعاب ضعف عدد الأشخاص.<br/>ومع ذلك، تتمتع السيارة ذات الطابقين بمركز ثقل مرتفع وتحتاج إلى الدوران بشكل أبطأ - لذلك بعد E5، تحولت إلى استراتيجية "المقدمة الطويلة + السرعة العالية".</div>
+</section>
+<section class="section">
+<h2 class="title">🌏 اليابان شينكانسن vs سكك حديد هونج كونج</h2>
+<div class="table-wrap">
+<table>
+<tr><th>مشروع</th><th>شينكانسن</th><th>هونغ كونغ للسكك الحديدية</th></tr>
+<tr><td>الغرض الرئيسي</td><td>السفر بسرعة عالية بين المدن</td><td>التنقل في المدينة</td></tr>
+<tr><td>سرعة</td><td>فئة 320 كم/ساعة</td><td>حوالي 80 كم / ساعة</td></tr>
+<tr><td>التركيز الهندسي</td><td>سرعة عالية، أمان، ضوضاء منخفضة</td><td>كثافة عالية وفي الوقت المحدد</td></tr>
+<tr><td>شبكة الطريق</td><td>مدينة عبر المحافظات (طوكيو ~ شين-أوموري 675 كم)</td><td>المدينة الداخلية (حوالي 250 كم)</td></tr>
+</table>
+</div>
+</section>
+<footer>🚄 مشروع متحف شينكانسن STEM<br/>مصممة لطلاب هونج كونج<div class="credit">المصدر: خارطة الطريق الرسمية لـ Wikipedia / JR East (للاستخدام التعليمي) · الصورة: Wikimedia Commons (CC BY-SA / CC0) · الدعم: ☕ ko-fi.com/forumdata</div>
+</footer>
+<div id="lightbox" onclick="closeImg()">
+<div class="close">×</div>
+<img alt="放大圖片" id="bigImage"/>
+</div>
+<script>
+  function openImg(src) {
+    document.getElementById("lightbox").style.display = "flex";
+    document.getElementById("bigImage").src = src;
+  }
+  function closeImg() {
+    document.getElementById("lightbox").style.display = "none";
+  }
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") closeImg();
+  });
+</script>
+</body>
+</html>
