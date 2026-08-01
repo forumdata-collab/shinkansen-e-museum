@@ -138,6 +138,27 @@
   .alfax p { line-height: 1.8; opacity: 0.95; }
   .alfax .stat { display: inline-block; background: rgba(255,255,255,.15); border-radius: 12px; padding: 10px 18px; margin: 6px 6px 0 0; }
   .alfax .stat b { display: block; font-size: 1.2rem; }
+  /* Nose comparison (A) */
+  .nose-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
+  .nose-card { background: rgba(255,255,255,.12); border-radius: 16px; padding: 18px; text-align: center; }
+  .nose-card h4 { margin: 0 0 4px; font-size: 1.05rem; }
+  .nose-card .nose-label { font-size: .82rem; opacity: .85; margin: 0 0 10px; }
+  .nose-card small { display: block; margin-top: 10px; opacity: .8; font-size: .8rem; line-height: 1.5; }
+  .nose-visual { position: relative; width: 250px; height: 44px; margin: 8px auto; }
+  .nose-visual .n-body { position: absolute; right: 0; top: 7px; width: 72px; height: 30px; background: #fff; border-radius: 4px; }
+  .nose-visual .n-16 { position: absolute; right: 72px; top: 7px; width: 68px; height: 30px; background: #ffd54f; clip-path: polygon(0 0, 100% 32%, 100% 68%, 0 100%); }
+  .nose-visual .n-22 { position: absolute; right: 72px; top: 7px; width: 94px; height: 30px; background: #ffd54f; clip-path: polygon(0 0, 100% 38%, 100% 62%, 0 100%); }
+  .nose-visual .n-rail { position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: rgba(255,255,255,.35); border-radius: 2px; }
+  @media (max-width: 768px) { .nose-compare { grid-template-columns: 1fr; } }
+  /* Quiz tabs (C) */
+  .quiz-tabs { display: flex; gap: 10px; margin-bottom: 14px; }
+  .quiz-tab {
+    background: #eef3f8; border: 2px solid #d0dbe8; border-radius: 10px;
+    padding: 9px 20px; cursor: pointer; font-size: .95rem; font-weight: 700;
+    font-family: inherit; color: #0b3d91; transition: .2s;
+  }
+  .quiz-tab:hover { background: #dbe8f7; }
+  .quiz-tab.active { background: #0b3d91; color: #fff; border-color: #0b3d91; }
   /* Lightbox */
   #lightbox {
     display: none; position: fixed; z-index: 999; top: 0; left: 0;
@@ -325,6 +346,24 @@
 </div>
 <p style="margin-top:16px">أبرز مميزات العلوم والتكنولوجيا والهندسة والرياضيات:<br/>•<b>نوعان من الأنف</b>— تستخدم البطاقة 1 الأنف الجديد "على شكل زاوية"، وتستخدم البطاقة 10 الأنف "على شكل سهم" E5. وفي الوقت نفسه، يتم اختبار الأداء الديناميكي الهوائي ومقارنته.<br/>•<b>نظام التحكم بالاهتزازات الزلزالية</b>- تقليل مخاطر الاهتزاز والانحراف (هندسة مقاومة الزلازل)<br/>•<b>جسم مضاد للثلج</b>— حل مشكلة ثلوج الشتاء في شمال شرق الصين (علم المواد)<br/>•<b>تصميم للحد من الضوضاء</b>— زعانف عزل الصوت ببانتوجراف، بحث حول التحكم في الضوضاء بسرعة 400 كم/ساعة (الهندسة الصوتية)</p>
 <p style="margin-top:16px;background:rgba(255,255,255,.1);border-radius:12px;padding:14px">🔍<b>ملحق الويكي الصيني (E956 المواصفات التفصيلية):</b><br/>•<b>المواصفات الفعلية لنوع الأنف المزدوج</b>— السيارة رقم 1: جسم مسطح، على شكل منقار البط، 16 مترًا (سرعة تصل إلى 400 كم/ساعة) | السيارة رقم 10: رأس على شكل سيف، 22 متر (السرعة 320-340 كم/ساعة)<br/>•<b>مركبة تعمل بالطاقة بالكامل</b>— سيارة كهربائية من سلسلة كاملة مكونة من 10 سيارات (4 وحدات)، بتكلفة تبلغ حوالي 10 مليار ين<br/>•<b>الشركة المصنعة</b>— شركة كاواساكي للصناعات الثقيلة (القاطرة رقم 1) + شركة هيتاشي للتصنيع (القاطرة رقم 10)<br/>•<b>سجل اختبار الرحلة</b>- تم افتتاحها لركوب الاختبار الإعلامي لأول مرة في أكتوبر 2020، لتصل سرعتها إلى 382 كم/ساعة<br/>•<b>اختبار هوكايدو</b>- قيادة قطار هوكايدو شينكانسن لأول مرة في فبراير 2020 لإجراء اختبار البرد الشديد لتمديد سابورو 2031<br/>•<b>تجربة النافذة</b>— تستخدم كل سيارة نوافذ بأحجام/أشكال مختلفة لاختبار الضوضاء عالية السرعة (السيارة رقم 5 لا تحتوي على نوافذ، ومكتوب عليها ALFA-X كبير)</p>
+<h3 style="margin-top:22px">🔀 مقارنة الأنف المزدوج - نفس القطار، تصميمان</h3>
+<p>هل تريد اختبار أنوف سيارتين في نفس الوقت؟ لأننا بحاجة إلى جمع<b>خياران لتخفيف موجة الضغط</b>البيانات:
+      من المرجح أن يولد الأنف القصير موجات ضغط صغيرة في النفق (Tunnel Boom) في ظل سرعات الرياح العالية، في حين أن الأنف الطويل يمكن أن يقلل بشكل فعال من صوت الانفجار عند مخرج النفق.
+      إن إجراء تجارب مضبوطة على طرفي القطار يضاعف الكفاءة!</p>
+<div class="nose-compare">
+<div class="nose-card">
+<h4>السيارة رقم 1 - نوع منقار البط ذو الجسم المسطح</h4>
+<div class="nose-label">16 متر · تصنيع شركة كاواساكي للصناعات الثقيلة · تم اختبار سرعتها 400 كم/ساعة</div>
+<div class="nose-visual"><div class="n-16"></div><div class="n-body"></div><div class="n-rail"></div></div>
+<small>الأنف القصير + الجسم المسطح: التركيز على التحقق من الحد الديناميكي الهوائي لأعلى سرعة</small>
+</div>
+<div class="nose-card">
+<h4>السيارة رقم 10 – رأس على شكل سيف</h4>
+<div class="nose-label">22 مترًا · صُنع بواسطة شركة هيتاشي للتصنيع · تم اختباره بسرعة 320-340 كم/ساعة</div>
+<div class="nose-visual"><div class="n-22"></div><div class="n-body"></div><div class="n-rail"></div></div>
+<small>الأنف الطويل + شكل السيف: التحقق من التأثير المخفف لموجات الضغط الجزئي النفقي</small>
+</div>
+</div>
 </div>
 </section>
 <section class="section">
@@ -392,8 +431,12 @@
 </section>
 <section class="section">
 <h2 class="title">🧠 اختبار المعرفة - هل أنت مهندس صغير؟</h2>
-<p class="section-sub">بعد مشاهدة المعرض، حاول الإجابة على بعض الأسئلة!</p>
-<div class="quiz-box" id="quizBox">
+<p class="section-sub">جرب مستوى الدخول أولا، ثم تحدى مستوى الخبراء!</p>
+<div class="quiz-tabs">
+<button class="quiz-tab active" id="tabEasy" onclick="switchQuiz('easy')">🌱مستوى الدخول</button>
+<button class="quiz-tab" id="tabHard" onclick="switchQuiz('hard')">🚀 مستوى الخبراء</button>
+</div>
+<div class="quiz-box" id="quizEasy">
 <div class="quiz-q">
 <div class="qtext">1. أول قطار شينكانسن ذو طابقين في العالم بحواف جانبية؟</div>
 <div class="quiz-opts">
@@ -413,7 +456,20 @@
 </div>
 </div>
 <div class="quiz-q">
-<div class="qtext">3. ما هي سرعة اختبار ALFA-X؟</div>
+<div class="qtext">3. هل يمكن أن تخبرني ما إذا كان هناك أي قطارات ركاب من سلسلة "E9"؟</div>
+<div class="quiz-opts">
+<button class="quiz-btn" onclick="answer(this,false)">آسف على الرقم</button>
+<button class="quiz-btn" onclick="answer(this,true)">البادئة "9" مخصصة لمركبات الاختبار/المركبات الهندسية</button>
+<button class="quiz-btn" onclick="answer(this,false)">لم يقم أحد بتصميمه</button>
+<button class="quiz-btn" onclick="answer(this,false)">تمت إعادة تسمية E9 إلى E10</button>
+</div>
+</div>
+<div class="quiz-result" id="quizResultEasy"></div>
+<button class="quiz-btn" id="quizResetEasy" onclick="resetQuiz('easy')" style="display:none;margin-top:10px">🔄 العب مرة أخرى</button>
+</div>
+<div class="quiz-box" id="quizHard" style="display:none">
+<div class="quiz-q">
+<div class="qtext">1. ما هي سرعة اختبار ALFA-X؟</div>
 <div class="quiz-opts">
 <button class="quiz-btn" onclick="answer(this,false)">320 كم/ساعة</button>
 <button class="quiz-btn" onclick="answer(this,false)">350 كم/ساعة</button>
@@ -422,25 +478,25 @@
 </div>
 </div>
 <div class="quiz-q">
-<div class="qtext">4. هل يمكن أن تخبرني ما إذا كان هناك أي قطارات ركاب من سلسلة "E9"؟</div>
+<div class="qtext">2. ما هو طول الأنف الذي يشبه السيف لسيارة ALFA-X رقم 10؟</div>
 <div class="quiz-opts">
-<button class="quiz-btn" onclick="answer(this,false)">آسف على الرقم</button>
-<button class="quiz-btn" onclick="answer(this,true)">البادئة "9" مخصصة لمركبات الاختبار/المركبات الهندسية</button>
-<button class="quiz-btn" onclick="answer(this,false)">لم يقم أحد بتصميمه</button>
-<button class="quiz-btn" onclick="answer(this,false)">تمت إعادة تسمية E9 إلى E10</button>
+<button class="quiz-btn" onclick="answer(this,false)">9 متر</button>
+<button class="quiz-btn" onclick="answer(this,false)">15 مترا</button>
+<button class="quiz-btn" onclick="answer(this,false)">16 مترا</button>
+<button class="quiz-btn" onclick="answer(this,true)">22 مترا</button>
 </div>
 </div>
 <div class="quiz-q">
-<div class="qtext">5. ما هو نظام إمداد الطاقة الذي يستخدمه الشينكانسن؟</div>
+<div class="qtext">3. هل تم تصميم E10 بواسطة فريق التصميم الخارجي لشركة Bianjian؟</div>
 <div class="quiz-opts">
-<button class="quiz-btn" onclick="answer(this,true)">كابل علوي بجهد 25 كيلو فولت</button>
-<button class="quiz-btn" onclick="answer(this,false)">بطارية تيار مستمر 12 فولت</button>
-<button class="quiz-btn" onclick="answer(this,false)">لوحة شمسية</button>
-<button class="quiz-btn" onclick="answer(this,false)">إمدادات الطاقة السكك الحديدية الثالثة</button>
+<button class="quiz-btn" onclick="answer(this,false)">بينينفارينا (إيطاليا)</button>
+<button class="quiz-btn" onclick="answer(this,true)">اليوسفي (المملكة المتحدة)</button>
+<button class="quiz-btn" onclick="answer(this,false)">إيديو (الولايات المتحدة الأمريكية)</button>
+<button class="quiz-btn" onclick="answer(this,false)">نيندو (اليابان)</button>
 </div>
 </div>
-<div class="quiz-result" id="quizResult"></div>
-<button class="quiz-btn" id="quizReset" onclick="resetQuiz()" style="display:none;margin-top:10px">🔄 العب مرة أخرى</button>
+<div class="quiz-result" id="quizResultHard"></div>
+<button class="quiz-btn" id="quizResetHard" onclick="resetQuiz('hard')" style="display:none;margin-top:10px">🔄 العب مرة أخرى</button>
 </div>
 </section>
 <section class="section">
@@ -507,15 +563,18 @@
   noseSlider.addEventListener("input", updateSim);
   updateSim();
 
-  // === 知識小測驗 ===
-  let score = 0, answered = 0;
+  // === 知識小測驗（入門級 / 專家級） ===
+  const quizState = { easy: { score: 0, answered: 0 }, hard: { score: 0, answered: 0 } };
   function answer(btn, isCorrect) {
     if (btn.disabled) return;
+    const box = btn.closest(".quiz-box");
+    const level = box.id === "quizEasy" ? "easy" : "hard";
+    const st = quizState[level];
     const opts = btn.parentElement.querySelectorAll(".quiz-btn");
     opts.forEach(o => o.disabled = true);
     if (isCorrect) {
       btn.classList.add("correct");
-      score++;
+      st.score++;
     } else {
       btn.classList.add("wrong");
       // 顯示正確答案
@@ -523,28 +582,38 @@
         if (o.onclick.toString().includes("true")) o.classList.add("correct");
       });
     }
-    answered++;
-    if (answered === 5) {
-      const res = document.getElementById("quizResult");
+    st.answered++;
+    const total = box.querySelectorAll(".quiz-q").length;
+    if (st.answered === total) {
+      const res = document.getElementById("quizResult" + (level === "easy" ? "Easy" : "Hard"));
       res.style.display = "block";
       let msg, cls;
-      if (score === 5) { msg = "🏆 滿分！你係首席工程師！"; cls = "good"; }
-      else if (score >= 4) { msg = "🌟 好叻！你係小小工程師！"; cls = "good"; }
-      else if (score >= 3) { msg = "👍 唔錯！繼續努力！"; cls = "mid"; }
+      if (st.score === total) { msg = "🏆 滿分！你係首席工程師！"; cls = "good"; }
+      else if (st.score >= total - 1) { msg = "🌟 好叻！你係小小工程師！"; cls = "good"; }
+      else if (st.score >= 2) { msg = "👍 唔錯！繼續努力！"; cls = "mid"; }
       else { msg = "💪 再睇多次展覽，試多一次！"; cls = "bad"; }
       res.className = "quiz-result " + cls;
-      res.textContent = "你答啱 " + score + "/5 題 — " + msg;
-      document.getElementById("quizReset").style.display = "inline-block";
+      res.textContent = "你答啱 " + st.score + "/" + total + " 題 — " + msg;
+      document.getElementById("quizReset" + (level === "easy" ? "Easy" : "Hard")).style.display = "inline-block";
     }
   }
-  function resetQuiz() {
-    score = 0; answered = 0;
-    document.querySelectorAll(".quiz-btn").forEach(o => {
+  function switchQuiz(level) {
+    const easy = level === "easy";
+    document.getElementById("quizEasy").style.display = easy ? "block" : "none";
+    document.getElementById("quizHard").style.display = easy ? "none" : "block";
+    document.getElementById("tabEasy").classList.toggle("active", easy);
+    document.getElementById("tabHard").classList.toggle("active", !easy);
+  }
+  function resetQuiz(level) {
+    const st = quizState[level];
+    st.score = 0; st.answered = 0;
+    const box = document.getElementById(level === "easy" ? "quizEasy" : "quizHard");
+    box.querySelectorAll(".quiz-btn").forEach(o => {
       o.disabled = false;
       o.classList.remove("correct", "wrong");
     });
-    document.getElementById("quizResult").style.display = "none";
-    document.getElementById("quizReset").style.display = "none";
+    document.getElementById("quizResult" + (level === "easy" ? "Easy" : "Hard")).style.display = "none";
+    document.getElementById("quizReset" + (level === "easy" ? "Easy" : "Hard")).style.display = "none";
   }
 </script>
 </body>
