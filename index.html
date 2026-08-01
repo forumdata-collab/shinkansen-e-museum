@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本新幹線 E系列 STEM 科技展 | Shinkansen E Series STEM Museum</title>
+<style>
+  body {
+    font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+    margin: 0; background: #f4f7fb; color: #222;
+  }
+  /* Topbar */
+  .topbar {
+    background: #0b3d91; display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 24px; gap: 12px; flex-wrap: wrap;
+  }
+  .topbar a.back { color: #b8cdf0; text-decoration: none; font-size: 0.9rem; }
+  .topbar a.back:hover { color: #fff; }
+  .topbar-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .topbar select {
+    background: rgba(255,255,255,0.12); color: #fff;
+    border: 1px solid rgba(255,255,255,0.25); border-radius: 8px;
+    padding: 8px 12px; font-size: 0.8rem; font-family: inherit;
+  }
+  .topbar select option { color: #222; }
+  .kofi-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 9px 20px; background: #ff5e5b; color: #fff;
+    text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.85rem;
+  }
+  .kofi-btn svg { width: 16px; height: 16px; }
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, #0b3d91, #1e88e5);
+    color: white; padding: 60px 20px; text-align: center;
+  }
+  .hero h1 { font-size: 44px; margin-bottom: 10px; }
+  .hero p { font-size: 22px; opacity: 0.9; }
+  .train { font-size: 80px; animation: moveTrain 6s infinite linear; display: inline-block; }
+  @keyframes moveTrain {
+    0% { transform: translateX(-40vw); }
+    100% { transform: translateX(40vw); }
+  }
+  /* Sections */
+  .section { max-width: 1100px; margin: auto; padding: 40px 20px; }
+  .title { font-size: 32px; border-left: 10px solid #e53935; padding-left: 15px; margin-top: 0; }
+  /* Timeline */
+  .timeline { display: flex; overflow-x: auto; gap: 20px; padding-bottom: 10px; }
+  .year {
+    background: white; min-width: 170px; padding: 20px; border-radius: 20px;
+    box-shadow: 0 5px 15px #ccc; transition: .3s; flex-shrink: 0;
+  }
+  .year:hover { transform: translateY(-10px); }
+  .year h2 { margin: 0 0 8px; color: #0b3d91; }
+  /* Grid */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+  .card {
+    background: white; border-radius: 20px; padding: 0 0 25px; overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,.12); transition: .3s;
+  }
+  .card:hover { transform: scale(1.03); box-shadow: 0 12px 28px rgba(0,0,0,.18); }
+  .card img {
+    width: 100%; height: 180px; object-fit: cover; cursor: pointer;
+    transition: transform .4s; display: block;
+  }
+  .card:hover img { transform: scale(1.06); }
+  .card-body { padding: 20px 22px 0; }
+  .card h2 { margin: 0 0 8px; color: #0b3d91; }
+  .card p { font-size: 0.95rem; line-height: 1.6; }
+  .badge {
+    display: inline-block; background: #1565c0; color: white;
+    padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; margin-bottom: 10px;
+  }
+  .badge-concept { background: #6a1b9a; }
+  .badge-future { background: #e53935; }
+  /* STEM box */
+  .stem { background: #fff8e1; border-radius: 20px; padding: 25px; font-size: 1.05rem; line-height: 1.8; }
+  .stem h3 { color: #0b3d91; }
+  /* Table */
+  table { width: 100%; border-collapse: collapse; background: white; font-size: 1rem; }
+  td, th { padding: 14px; border-bottom: 1px solid #ddd; text-align: left; }
+  th { background: #1565c0; color: white; }
+  tr:hover td { background: #f0f6ff; }
+  /* Lightbox */
+  #lightbox {
+    display: none; position: fixed; z-index: 999; top: 0; left: 0;
+    width: 100%; height: 100%; background: rgba(0,0,0,.88);
+    align-items: center; justify-content: center; cursor: pointer;
+  }
+  #lightbox img { max-width: 92%; max-height: 92%; border-radius: 16px; }
+  .close {
+    position: absolute; top: 16px; right: 32px; font-size: 48px;
+    color: white; cursor: pointer; line-height: 1;
+  }
+  /* Footer */
+  footer {
+    background: #111; color: white; text-align: center; padding: 30px; font-size: 0.9rem;
+  }
+  footer .credit { opacity: 0.6; font-size: 0.8rem; margin-top: 8px; }
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 32px; }
+    .hero p { font-size: 18px; }
+    .title { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="back" href="https://forumdata-collab.github.io/">← 返回主頁</a>
+  <div class="topbar-right">
+    <select id="lang-switch" onchange="location.href=this.value" aria-label="Language">
+      <option value="https://forumdata-collab.github.io/shinkansen-e-museum/" selected>繁體中文（香港）</option>
+      <option value="https://forumdata-collab.github.io/shinkansen-e-museum/en/">English (US)</option>
+      <option value="https://forumdata-collab.github.io/shinkansen-e-museum/zh-CN/">简体中文</option>
+      <option value="https://forumdata-collab.github.io/shinkansen-e-museum/zh-TW/">繁體中文（台灣）</option>
+      <option value="https://forumdata-collab.github.io/shinkansen-e-museum/ar/">العربية</option>
+    </select>
+    <a class="kofi-btn" href="https://ko-fi.com/forumdata" target="_blank">
+      <svg viewBox="0 0 24 24" fill="white"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.47.06 8.529-1.723 8.649-4.916zm-11.638 8.978c-2.252 0-4.078-1.826-4.078-4.078s1.826-4.078 4.078-4.078 4.078 1.826 4.078 4.078-4.078 4.078z"/></svg>
+      ☕ 請我喝杯咖啡
+    </a>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="train">🚄</div>
+  <h1>日本新幹線 E系列科技展</h1>
+  <p>一列火車 · 30年工程進化 · STEM探索之旅</p>
+</section>
+
+<section class="section">
+  <h2 class="title">🚉 新幹線進化時間線</h2>
+  <div class="timeline">
+    <div class="year"><h2>E1</h2>1994<br>雙層列車革命</div>
+    <div class="year"><h2>E2</h2>1997<br>速度與舒適</div>
+    <div class="year"><h2>E3</h2>1997<br>迷你新幹線</div>
+    <div class="year"><h2>E4</h2>1997<br>最高載客量</div>
+    <div class="year"><h2>E5</h2>2011<br>320km/h高速</div>
+    <div class="year"><h2>E6</h2>2013<br>紅色秋田新幹線</div>
+    <div class="year"><h2>E7</h2>2014<br>豪華舒適</div>
+    <div class="year"><h2>E8</h2>2024<br>新世代地方高速</div>
+    <div class="year"><h2>E9</h2>未來<br>AI智能列車</div>
+    <div class="year"><h2>E10</h2>2040+<br>未來高速概念</div>
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="title">🚄 E1-E10 車頭展示卡</h2>
+  <p style="color:#666;margin-bottom:20px">💡 點擊圖片可放大查看</p>
+  <div class="grid">
+
+    <div class="card">
+      <img src="https://img.hermesagent.de5.net/shinkansen-e/e1.jpg" alt="E1 MAX 雙層新幹線" onclick="openImg(this.src)">
+      <div class="card-body">
+        <h2>E1 MAX</h2>
+        <span class="badge">雙層革命</span>
+        <p>第一代雙層新幹線。<br>STEM：利用垂直空間增加載客量。</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://img.hermesagent.de5.net/shinkansen-e/e2.jpg" alt="E2 新幹線" onclick="openImg(this.src)">
+      <div class="card-body">
+        <h2>E2</h2>
+        <span class="badge">高速平衡</span>
+        <p>提升速度、舒適及抗震能力。</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://img.hermesagent.de5.net/shinkansen-e/e3.jpg" alt="E3 Komachi 迷你新幹線" onclick="openImg(this.src)">
+      <div class="card-body">
+        <h2>E3 Komachi</h2>
+        <span class="badge">迷你新幹線</span>
+        <p>高速鐵路與地方鐵路結合，直通運行。</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://img.hermesagent.de5.net/shinkansen-e/e4.jpg" alt="E4 MAX 雙層新幹線" onclick="openImg(this.src)">
+      <div class="card-body">
+        <h2>E4 MAX</h2>
+        <span class="badge">載客王</span>
+        <p>雙層設計，約1,600人容量。<br>STEM：垂直空間運用極致。</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://img.hermesagent.de5.net/shinkansen-e/e5.jpg" alt="E5 Hayabusa 新幹線" onclick="openImg(this.src)">
+      <div class="card-body">
+        <h2>E5 Hayabusa</h2>
+        <span class="badge">320km/h</span>
+        <p>15米長鼻車頭減少空氣阻力。<br>STEM：流體力學。</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://img.hermesagent.de5.net/shinkansen-e/e6.jpg" alt="E6 Komachi 秋田新幹線" onclick="openImg(this.src)">
+      <div class="card-body">
+        <h2>E6 Komachi</h2>
+        <span class="badge">秋田新幹線</span>
+        <p>茜紅色塗裝，高速＋山區路線。<br>STEM：輪軌力學。</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://img.hermesagent.de5.net/shinkansen-e/e7.jpg" alt="E7 北陸新幹線" onclick="openImg(this.src)">
+      <div class="card-body">
+        <h2>E7</h2>
+        <span class="badge">舒適科技</span>
+        <p>北陸新幹線代表。<br>STEM：主動懸吊系統。</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://img.hermesagent.de5.net/shinkansen-e/e8.jpg" alt="E8 Tsubasa 新幹線" onclick="openImg(this.src)">
+      <div class="card-body">
+        <h2>E8 Tsubasa</h2>
+        <span class="badge">新世代</span>
+        <p>2024年投入服務。<br>STEM：節能與低噪音設計。</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body" style="padding-top:20px">
+        <div class="trainfront" style="font-size:60px;text-align:center">🤖🚄</div>
+        <h2 style="text-align:center;margin-top:10px">E9</h2>
+        <span class="badge badge-concept">AI概念</span>
+        <p>智能維修與能源管理概念列車。<br>STEM：人工智能應用。</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body" style="padding-top:20px">
+        <div class="trainfront" style="font-size:60px;text-align:center">🚀</div>
+        <h2 style="text-align:center;margin-top:10px">E10</h2>
+        <span class="badge badge-future">未來列車</span>
+        <p>AI、新材料、超高速概念。<br>STEM：未來科技想像。</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="title">🔬 STEM 工程實驗室</h2>
+  <div class="stem">
+    <h3>問題1：為什麼E5車頭很長？</h3>
+    空氣高速流動會產生阻力。<br><br>
+    長鼻設計：<br>
+    空氣 → 平滑分開 → 降低噪音 → 節省能源
+    <hr>
+    <h3>問題2：為什麼火車需要懸掛系統？</h3>
+    減少震動，讓乘客更舒適。<br>
+    車體傾斜裝置讓列車過彎時唔會減速太多。
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="title">🌏 日本新幹線 vs 香港鐵路</h2>
+  <table>
+    <tr><th>項目</th><th>新幹線</th><th>香港鐵路</th></tr>
+    <tr><td>主要用途</td><td>城市間高速旅行</td><td>城市通勤</td></tr>
+    <tr><td>速度</td><td>320 km/h級</td><td>約80 km/h</td></tr>
+    <tr><td>工程重點</td><td>高速、安全、低噪音</td><td>高密度、準時</td></tr>
+  </table>
+</section>
+
+<footer>
+  🚄 Shinkansen STEM Museum Project<br>
+  Designed for Hong Kong Students
+  <div class="credit">圖片來源：Wikimedia Commons（CC BY-SA / CC0 授權，僅供教育用途）· 支援：☕ ko-fi.com/forumdata</div>
+</footer>
+
+<div id="lightbox" onclick="closeImg()">
+  <div class="close">×</div>
+  <img id="bigImage" alt="放大圖片">
+</div>
+
+<script>
+  function openImg(src) {
+    document.getElementById("lightbox").style.display = "flex";
+    document.getElementById("bigImage").src = src;
+  }
+  function closeImg() {
+    document.getElementById("lightbox").style.display = "none";
+  }
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") closeImg();
+  });
+</script>
+</body>
+</html>
