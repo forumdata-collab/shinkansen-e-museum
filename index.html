@@ -44,6 +44,7 @@
   /* Sections */
   .section { max-width: 1100px; margin: auto; padding: 40px 20px; }
   .title { font-size: 32px; border-left: 10px solid #e53935; padding-left: 15px; margin-top: 0; }
+  .section-sub { color: #666; margin: -8px 0 20px; padding-left: 25px; }
   /* Timeline */
   .timeline { display: flex; overflow-x: auto; gap: 20px; padding-bottom: 10px; }
   .year {
@@ -52,6 +53,8 @@
   }
   .year:hover { transform: translateY(-10px); }
   .year h2 { margin: 0 0 8px; color: #0b3d91; }
+  .year .yr { color: #e53935; font-weight: 700; }
+  .year small { color: #888; display: block; margin-top: 6px; }
   /* Grid */
   .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
   .card {
@@ -71,16 +74,30 @@
     display: inline-block; background: #1565c0; color: white;
     padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; margin-bottom: 10px;
   }
+  .badge-retired { background: #757575; }
   .badge-concept { background: #6a1b9a; }
   .badge-future { background: #e53935; }
+  .badge-test { background: #00897b; }
   /* STEM box */
   .stem { background: #fff8e1; border-radius: 20px; padding: 25px; font-size: 1.05rem; line-height: 1.8; }
   .stem h3 { color: #0b3d91; }
   /* Table */
-  table { width: 100%; border-collapse: collapse; background: white; font-size: 1rem; }
-  td, th { padding: 14px; border-bottom: 1px solid #ddd; text-align: left; }
-  th { background: #1565c0; color: white; }
+  .table-wrap { overflow-x: auto; background: white; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,.08); }
+  table { width: 100%; border-collapse: collapse; background: white; font-size: 0.95rem; min-width: 800px; }
+  td, th { padding: 12px 14px; border-bottom: 1px solid #e3e8ef; text-align: left; }
+  th { background: #1565c0; color: white; position: sticky; top: 0; }
   tr:hover td { background: #f0f6ff; }
+  .rowname { font-weight: 700; color: #0b3d91; }
+  .retired { color: #757575; }
+  /* ALFA-X highlight */
+  .alfax {
+    background: linear-gradient(135deg, #0b3d91, #00897b);
+    color: white; border-radius: 20px; padding: 28px; margin-top: 20px;
+  }
+  .alfax h3 { margin-top: 0; font-size: 1.4rem; }
+  .alfax p { line-height: 1.8; opacity: 0.95; }
+  .alfax .stat { display: inline-block; background: rgba(255,255,255,.15); border-radius: 12px; padding: 10px 18px; margin: 6px 6px 0 0; }
+  .alfax .stat b { display: block; font-size: 1.2rem; }
   /* Lightbox */
   #lightbox {
     display: none; position: fixed; z-index: 999; top: 0; left: 0;
@@ -131,31 +148,58 @@
 
 <section class="section">
   <h2 class="title">🚉 新幹線進化時間線</h2>
+  <p class="section-sub">東北新幹線 1982 年開通 — JR東日本轄區最長嘅新幹線路線（東京〜新青森）</p>
   <div class="timeline">
-    <div class="year"><h2>E1</h2>1994<br>雙層列車革命</div>
-    <div class="year"><h2>E2</h2>1997<br>速度與舒適</div>
-    <div class="year"><h2>E3</h2>1997<br>迷你新幹線</div>
-    <div class="year"><h2>E4</h2>1997<br>最高載客量</div>
-    <div class="year"><h2>E5</h2>2011<br>320km/h高速</div>
-    <div class="year"><h2>E6</h2>2013<br>紅色秋田新幹線</div>
-    <div class="year"><h2>E7</h2>2014<br>豪華舒適</div>
-    <div class="year"><h2>E8</h2>2024<br>新世代地方高速</div>
-    <div class="year"><h2>E9</h2>未來<br>AI智能列車</div>
-    <div class="year"><h2>E10</h2>2040+<br>未來高速概念</div>
+    <div class="year"><h2>E1</h2><span class="yr">1994-2012</span>雙層列車革命<small>已退役</small></div>
+    <div class="year"><h2>E2</h2><span class="yr">1997-</span>速度與舒適<small>營運中</small></div>
+    <div class="year"><h2>E3</h2><span class="yr">1997-</span>迷你新幹線<small>山形/秋田</small></div>
+    <div class="year"><h2>E4</h2><span class="yr">1997-2021</span>最高載客量<small>已退役</small></div>
+    <div class="year"><h2>E5</h2><span class="yr">2011-</span>320km/h高速<small>營運中</small></div>
+    <div class="year"><h2>E6</h2><span class="yr">2013-</span>紅色秋田新幹線<small>營運中</small></div>
+    <div class="year"><h2>E7</h2><span class="yr">2014-</span>北陸豪華舒適<small>營運中</small></div>
+    <div class="year"><h2>E8</h2><span class="yr">2024-</span>新世代地方高速<small>營運中</small></div>
+    <div class="year"><h2>E956</h2><span class="yr">2019-測試</span>ALFA-X 400km/h<small>實驗列車</small></div>
+    <div class="year"><h2>E9/E10</h2><span class="yr">未來</span>AI智能列車<small>概念階段</small></div>
   </div>
 </section>
 
 <section class="section">
-  <h2 class="title">🚄 E1-E10 車頭展示卡</h2>
-  <p style="color:#666;margin-bottom:20px">💡 點擊圖片可放大查看</p>
+  <h2 class="title">📊 E系列規格對比總表</h2>
+  <p class="section-sub">時速 · 載客量 · 首發/退役 · 編成 — 一目了然</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>型號</th><th>最高時速</th><th>載客量</th><th>編成</th>
+          <th>首發</th><th>退役</th><th>主要路線</th><th>特色</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="rowname">E1 Max</td><td>240 km/h</td><td>1,234人</td><td>12両</td><td>1994年7月</td><td class="retired">2012年9月</td><td>東北/上越</td><td>世界首款雙層新幹線</td></tr>
+        <tr><td class="rowname">E2</td><td>275 km/h</td><td>約800人</td><td>8/10両</td><td>1997年</td><td class="retired">—</td><td>東北/北陸</td><td>高速平衡・抗震</td></tr>
+        <tr><td class="rowname">E3 Komachi</td><td>275 km/h</td><td>約340人</td><td>6/7両</td><td>1997年6月</td><td class="retired">—</td><td>山形/秋田（迷你）</td><td>高速＋地方鐵路直通</td></tr>
+        <tr><td class="rowname">E4 Max</td><td>240 km/h</td><td>約1,600人</td><td>8両×2</td><td>1997年12月</td><td class="retired">2021年10月</td><td>東北/上越</td><td>最高載客量雙層</td></tr>
+        <tr><td class="rowname">E5 Hayabusa</td><td>320 km/h</td><td>731人</td><td>10両</td><td>2011年3月</td><td class="retired">—</td><td>東北/北海道</td><td>15m長鼻・Gran Class</td></tr>
+        <tr><td class="rowname">E6 Komachi</td><td>320 km/h</td><td>約400人</td><td>7両</td><td>2013年3月</td><td class="retired">—</td><td>秋田（迷你）</td><td>茜紅色・直通運行</td></tr>
+        <tr><td class="rowname">E7</td><td>260 km/h</td><td>約930人</td><td>12両</td><td>2014年3月</td><td class="retired">—</td><td>北陸</td><td>舒適科技・主動懸吊</td></tr>
+        <tr><td class="rowname">E8 Tsubasa</td><td>300 km/h</td><td>約340人</td><td>7両</td><td>2024年3月16日</td><td class="retired">—</td><td>山形（迷你）</td><td>9m箭形鼻・藏紅花黃</td></tr>
+        <tr><td class="rowname">E956 ALFA-X</td><td>400 km/h<small>（測試）</small></td><td>實驗用</td><td>10両</td><td>2019年5月（亮相）</td><td class="retired">測試中</td><td>東北</td><td>未來360km/h商業化技術驗證</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="title">🚄 E1-E8 車頭展示卡</h2>
+  <p class="section-sub">💡 點擊圖片可放大查看</p>
   <div class="grid">
 
     <div class="card">
       <img src="https://img.hermesagent.de5.net/shinkansen-e/e1.jpg" alt="E1 MAX 雙層新幹線" onclick="openImg(this.src)">
       <div class="card-body">
         <h2>E1 MAX</h2>
-        <span class="badge">雙層革命</span>
-        <p>第一代雙層新幹線。<br>STEM：利用垂直空間增加載客量。</p>
+        <span class="badge badge-retired">雙層革命 · 已退役</span>
+        <p>世界首款雙層新幹線（1994-2012）。<br>STEM：利用垂直空間增加載客量。</p>
       </div>
     </div>
 
@@ -164,7 +208,7 @@
       <div class="card-body">
         <h2>E2</h2>
         <span class="badge">高速平衡</span>
-        <p>提升速度、舒適及抗震能力。</p>
+        <p>1997年投入，提升速度、舒適及抗震能力。</p>
       </div>
     </div>
 
@@ -173,7 +217,7 @@
       <div class="card-body">
         <h2>E3 Komachi</h2>
         <span class="badge">迷你新幹線</span>
-        <p>高速鐵路與地方鐵路結合，直通運行。</p>
+        <p>高速鐵路與地方鐵路結合，直通運行。<br>STEM：軌距改裝（窄軌→標準軌）。</p>
       </div>
     </div>
 
@@ -181,8 +225,8 @@
       <img src="https://img.hermesagent.de5.net/shinkansen-e/e4.jpg" alt="E4 MAX 雙層新幹線" onclick="openImg(this.src)">
       <div class="card-body">
         <h2>E4 MAX</h2>
-        <span class="badge">載客王</span>
-        <p>雙層設計，約1,600人容量。<br>STEM：垂直空間運用極致。</p>
+        <span class="badge badge-retired">載客王 · 已退役</span>
+        <p>雙層設計約1,600人（1997-2021）。<br>STEM：垂直空間運用極致。</p>
       </div>
     </div>
 
@@ -191,7 +235,7 @@
       <div class="card-body">
         <h2>E5 Hayabusa</h2>
         <span class="badge">320km/h</span>
-        <p>15米長鼻車頭減少空氣阻力。<br>STEM：流體力學。</p>
+        <p>15米長鼻車頭減少空氣阻力與隧道噪音。<br>STEM：流體力學。</p>
       </div>
     </div>
 
@@ -218,7 +262,7 @@
       <div class="card-body">
         <h2>E8 Tsubasa</h2>
         <span class="badge">新世代</span>
-        <p>2024年投入服務。<br>STEM：節能與低噪音設計。</p>
+        <p>2024年3月16日投入服務。<br>STEM：9米箭形鼻 + 節能低噪音設計。</p>
       </div>
     </div>
 
@@ -236,10 +280,37 @@
         <div class="trainfront" style="font-size:60px;text-align:center">🚀</div>
         <h2 style="text-align:center;margin-top:10px">E10</h2>
         <span class="badge badge-future">未來列車</span>
-        <p>AI、新材料、超高速概念。<br>STEM：未來科技想像。</p>
+        <p>ALFA-X 驗證技術嘅未來商業化列車。<br>STEM：未來科技想像。</p>
       </div>
     </div>
 
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="title">🧪 ALFA-X — 未來新幹線實驗室</h2>
+  <p class="section-sub">E956系 · 10卡實驗列車 · 日本最快嘅鐵路測試平台</p>
+  <div class="alfax">
+    <h3>🚄 E956「ALFA-X」（2019年亮相）</h3>
+    <p>
+      ALFA-X（Advanced Labs for Frontline Activity in rail eXperimentation）係 JR東日本為
+      <b>未來 360 km/h 商業運行</b>而開發嘅 10 卡實驗列車，2019年12月14日成功進行
+      <b>400 km/h</b> 高速測試 — 打破日本鐵路測試速度紀錄。
+    </p>
+    <div>
+      <span class="stat"><b>400 km/h</b>測試極速</span>
+      <span class="stat"><b>360 km/h</b>商業目標</span>
+      <span class="stat"><b>10卡</b>編成</span>
+      <span class="stat"><b>22m</b>車鼻長度</span>
+      <span class="stat"><b>雙鼻型</b>對比測試</span>
+    </div>
+    <p style="margin-top:16px">
+      STEM 亮點：<br>
+      • <b>兩種車鼻</b> — 卡1用新「角型」鼻，卡10沿用E5「箭型」鼻，同時測試比較空氣動力學效能<br>
+      • <b>地震制振系統</b> — 減少震動同出軌風險（防震工程）<br>
+      • <b>防積雪車體</b> — 解決東北冬天積雪問題（材料科學）<br>
+      • <b>降噪設計</b> — 集電弓隔音鰭片，研究 400km/h 噪音控制（聲學工程）
+    </p>
   </div>
 </section>
 
@@ -249,28 +320,36 @@
     <h3>問題1：為什麼E5車頭很長？</h3>
     空氣高速流動會產生阻力。<br><br>
     長鼻設計：<br>
-    空氣 → 平滑分開 → 降低噪音 → 節省能源
+    空氣 → 平滑分開 → 降低噪音 → 節省能源<br>
+    （E5鼻長15米；E8用9米箭形鼻；ALFA-X測試22米）
     <hr>
     <h3>問題2：為什麼火車需要懸掛系統？</h3>
     減少震動，讓乘客更舒適。<br>
     車體傾斜裝置讓列車過彎時唔會減速太多。
+    <hr>
+    <h3>問題3：點解要雙層列車？</h3>
+    E1/E4 MAX 用垂直空間裝多一倍人。<br>
+    但雙層車重心高，轉彎要慢啲 — 所以 E5 之後改用「長鼻＋高速」策略。
   </div>
 </section>
 
 <section class="section">
   <h2 class="title">🌏 日本新幹線 vs 香港鐵路</h2>
-  <table>
-    <tr><th>項目</th><th>新幹線</th><th>香港鐵路</th></tr>
-    <tr><td>主要用途</td><td>城市間高速旅行</td><td>城市通勤</td></tr>
-    <tr><td>速度</td><td>320 km/h級</td><td>約80 km/h</td></tr>
-    <tr><td>工程重點</td><td>高速、安全、低噪音</td><td>高密度、準時</td></tr>
-  </table>
+  <div class="table-wrap">
+    <table>
+      <tr><th>項目</th><th>新幹線</th><th>香港鐵路</th></tr>
+      <tr><td>主要用途</td><td>城市間高速旅行</td><td>城市通勤</td></tr>
+      <tr><td>速度</td><td>320 km/h級</td><td>約80 km/h</td></tr>
+      <tr><td>工程重點</td><td>高速、安全、低噪音</td><td>高密度、準時</td></tr>
+      <tr><td>路線網絡</td><td>跨縣市（東京〜新青森 675km）</td><td>市內（約250km）</td></tr>
+    </table>
+  </div>
 </section>
 
 <footer>
   🚄 Shinkansen STEM Museum Project<br>
   Designed for Hong Kong Students
-  <div class="credit">圖片來源：Wikimedia Commons（CC BY-SA / CC0 授權，僅供教育用途）· 支援：☕ ko-fi.com/forumdata</div>
+  <div class="credit">資料來源：Wikipedia / JR East 官方路線圖（教育用途）· 圖片：Wikimedia Commons（CC BY-SA / CC0）· 支援：☕ ko-fi.com/forumdata</div>
 </footer>
 
 <div id="lightbox" onclick="closeImg()">
