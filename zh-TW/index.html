@@ -81,6 +81,46 @@ html
   /* STEM box */
   .stem { background: #fff8e1; border-radius: 20px; padding: 25px; font-size: 1.05rem; line-height: 1.8; }
   .stem h3 { color: #0b3d91; }
+  /* Glossary */
+  .glossary { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .gterm {
+    background: white; border-radius: 16px; padding: 18px; box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    border-left: 5px solid #1565c0;
+  }
+  .gterm h4 { margin: 0 0 6px; color: #0b3d91; font-size: 1rem; }
+  .gterm p { margin: 0; font-size: 0.88rem; color: #555; line-height: 1.6; }
+  /* Quiz */
+  .quiz-box { background: white; border-radius: 20px; padding: 25px; box-shadow: 0 8px 20px rgba(0,0,0,.1); }
+  .quiz-q { margin-bottom: 20px; }
+  .quiz-q .qtext { font-weight: 700; margin-bottom: 10px; color: #0b3d91; }
+  .quiz-opts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .quiz-btn {
+    background: #eef3f8; border: 2px solid #d0dbe8; border-radius: 10px;
+    padding: 8px 16px; cursor: pointer; font-size: 0.9rem; font-family: inherit;
+    transition: .2s;
+  }
+  .quiz-btn:hover { background: #dbe8f7; }
+  .quiz-btn.correct { background: #c8e6c9; border-color: #4caf50; }
+  .quiz-btn.wrong { background: #ffcdd2; border-color: #f44336; }
+  .quiz-btn:disabled { cursor: default; }
+  .quiz-result { margin-top: 16px; font-size: 1.1rem; font-weight: 700; text-align: center; padding: 16px; border-radius: 12px; display: none; }
+  .quiz-result.good { background: #c8e6c9; color: #1b5e20; }
+  .quiz-result.mid { background: #fff9c4; color: #f57f17; }
+  .quiz-result.bad { background: #ffcdd2; color: #b71c1c; }
+  /* Simulator */
+  .sim-box { background: white; border-radius: 20px; padding: 25px; box-shadow: 0 8px 20px rgba(0,0,0,.1); }
+  .sim-controls { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .sim-controls input[type=range] { flex: 1; min-width: 200px; }
+  .sim-value { font-size: 1.3rem; font-weight: 900; color: #0b3d91; }
+  .sim-track { position: relative; height: 90px; background: linear-gradient(to top, #eef3f8, #dbe8f7); border-radius: 12px; overflow: hidden; margin-bottom: 12px; }
+  .sim-train { position: absolute; bottom: 0; left: 10px; height: 60px; display: flex; align-items: center; }
+  .sim-train .body { background: #1565c0; height: 30px; border-radius: 4px; }
+  .sim-train .nose { background: linear-gradient(135deg, #1976d2, #0d47a1); clip-path: polygon(0 0, 100% 25%, 100% 75%, 0 100%); height: 30px; }
+  .sim-stats { display: flex; gap: 24px; flex-wrap: wrap; }
+  .sim-stat { text-align: center; }
+  .sim-stat b { display: block; font-size: 1.2rem; color: #e53935; }
+  .sim-stat span { font-size: 0.8rem; color: #888; }
+  .sim-ref { font-size: 0.82rem; color: #888; margin-top: 10px; }
   /* Table */
   .table-wrap { overflow-x: auto; background: white; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,.08); }
   table { width: 100%; border-collapse: collapse; background: white; font-size: 0.95rem; min-width: 800px; }
@@ -182,6 +222,7 @@ html
 </tbody>
 </table>
 </div>
+<p style="color:#888;font-size:0.85rem;margin-top:10px">📌 新幹線共通技術：軌距 1,435mm（標準軌）・供電 AC 25kV（50/60Hz）・信號 ATC 自動列車控制</p>
 </section>
 <section class="section">
 <h2 class="title">🚄 E1-E8 車頭展示卡</h2>
@@ -310,12 +351,103 @@ html
 <h3>問題3：點解要雙層列車？</h3>E1/E4 MAX 用垂直空間裝多一倍人。<br/>但雙層車重心高，轉彎要慢啲 — 所以 E5 之後改用「長鼻＋高速」策略。</div>
 </section>
 <section class="section">
+<h2 class="title">🧪 阻力實驗室 — 動手試試</h2>
+<p class="section-sub">拉動滑桿調整車頭長度，睇下阻力點樣變</p>
+<div class="sim-box">
+<div class="sim-controls">
+<label for="noseSlider"><b>車頭長度：</b></label>
+<input id="noseSlider" max="22" min="3" step="0.5" type="range" value="9"/>
+<span class="sim-value" id="noseVal">9 米</span>
+</div>
+<div class="sim-track">
+<div class="sim-train" id="simTrain">
+<div class="nose" id="simNose"></div>
+<div class="body" id="simBody"></div>
+</div>
+</div>
+<div class="sim-stats">
+<div class="sim-stat"><b id="dragVal">100%</b><span>空氣阻力（相對）</span></div>
+<div class="sim-stat"><b id="noiseVal">中</b><span>隧道噪音</span></div>
+<div class="sim-stat"><b id="speedVal">275</b><span>可行最高時速 (km/h)</span></div>
+</div>
+<p class="sim-ref">真實列車參考：E4 短鼻 240km/h ｜ E1 240km/h ｜ E8 箭形鼻 9米 300km/h ｜ E5 15米 320km/h ｜ ALFA-X 22米 400km/h（測試）</p>
+</div>
+</section>
+<section class="section">
+<h2 class="title">🎓 專業詞彙表</h2>
+<p class="section-sub">STEM 術語快速理解</p>
+<div class="glossary">
+<div class="gterm"><h4>流體力學</h4><p>研究空氣同液體點樣流動嘅科學。新幹線長鼻設計就係靠佢嚟減低阻力同噪音。</p></div>
+<div class="gterm"><h4>主動懸吊系統</h4><p>用感應器＋電腦主動控制避震，過彎時自動傾斜車身，乘客唔使捱離心力。</p></div>
+<div class="gterm"><h4>輪軌力學</h4><p>研究車輪同路軌接觸點嘅力學，影響穩定性、磨損同安全性。</p></div>
+<div class="gterm"><h4>軌距</h4><p>兩條路軌內側之間嘅距離。新幹線用 1,435mm 標準軌；迷你新幹線係將窄軌地方線改做標準軌。</p></div>
+<div class="gterm"><h4>ATC（自動列車控制）</h4><p>自動監控列車速度嘅安全系統，超速會自動剎車，防止追撞。</p></div>
+<div class="gterm"><h4>SiC 變頻器</h4><p>碳化矽半導體技術，比傳統矽製更慳電、散熱更好，E10 會用嚟提升效率。</p></div>
+</div>
+</section>
+<section class="section">
+<h2 class="title">🧠 知識小測驗 — 你係咪小小工程師？</h2>
+<p class="section-sub">睇完展覽，試下答啱幾多題！</p>
+<div class="quiz-box" id="quizBox">
+<div class="quiz-q">
+<div class="qtext">1. 世界首款雙層新幹線係邊款？</div>
+<div class="quiz-opts">
+<button class="quiz-btn" onclick="answer(this,false)">E5 Hayabusa</button>
+<button class="quiz-btn" onclick="answer(this,true)">E1 Max</button>
+<button class="quiz-btn" onclick="answer(this,false)">E8 Tsubasa</button>
+<button class="quiz-btn" onclick="answer(this,false)">E6 Komachi</button>
+</div>
+</div>
+<div class="quiz-q">
+<div class="qtext">2. E5 嘅長鼻車頭有幾長？</div>
+<div class="quiz-opts">
+<button class="quiz-btn" onclick="answer(this,false)">5米</button>
+<button class="quiz-btn" onclick="answer(this,false)">9米</button>
+<button class="quiz-btn" onclick="answer(this,true)">15米</button>
+<button class="quiz-btn" onclick="answer(this,false)">22米</button>
+</div>
+</div>
+<div class="quiz-q">
+<div class="qtext">3. ALFA-X 測試時速達到幾多？</div>
+<div class="quiz-opts">
+<button class="quiz-btn" onclick="answer(this,false)">320 km/h</button>
+<button class="quiz-btn" onclick="answer(this,false)">350 km/h</button>
+<button class="quiz-btn" onclick="answer(this,true)">400 km/h</button>
+<button class="quiz-btn" onclick="answer(this,false)">450 km/h</button>
+</div>
+</div>
+<div class="quiz-q">
+<div class="qtext">4. 點解冇「E9系」載客列車？</div>
+<div class="quiz-opts">
+<button class="quiz-btn" onclick="answer(this,false)">號碼唔好意頭</button>
+<button class="quiz-btn" onclick="answer(this,true)">「9」字頭留俾試驗車／工程車</button>
+<button class="quiz-btn" onclick="answer(this,false)">冇人設計過</button>
+<button class="quiz-btn" onclick="answer(this,false)">E9 改咗名叫 E10</button>
+</div>
+</div>
+<div class="quiz-q">
+<div class="qtext">5. 新幹線用咩供電系統？</div>
+<div class="quiz-opts">
+<button class="quiz-btn" onclick="answer(this,true)">AC 25kV 架空電纜</button>
+<button class="quiz-btn" onclick="answer(this,false)">DC 12V 電池</button>
+<button class="quiz-btn" onclick="answer(this,false)">太陽能板</button>
+<button class="quiz-btn" onclick="answer(this,false)">第三軌供電</button>
+</div>
+</div>
+<div class="quiz-result" id="quizResult"></div>
+<button class="quiz-btn" id="quizReset" onclick="resetQuiz()" style="display:none;margin-top:10px">🔄 再玩一次</button>
+</div>
+</section>
+<section class="section">
 <h2 class="title">🌏 日本新幹線 vs 香港鐵路</h2>
 <div class="table-wrap">
 <table>
 <tr><th>項目</th><th>新幹線</th><th>香港鐵路</th></tr>
 <tr><td>主要用途</td><td>城市間高速旅行</td><td>城市通勤</td></tr>
 <tr><td>速度</td><td>320 km/h級</td><td>約80 km/h</td></tr>
+<tr><td>軌距</td><td>1,435mm 標準軌</td><td>1,432mm（近標準軌）</td></tr>
+<tr><td>供電系統</td><td>AC 25kV 架空電纜</td><td>DC 1,500V（市區線）／AC 25kV（東鐵線）</td></tr>
+<tr><td>信號系統</td><td>ATC 自動列車控制</td><td>CBTC 通訊式列車控制（市區線）</td></tr>
 <tr><td>工程重點</td><td>高速、安全、低噪音</td><td>高密度、準時</td></tr>
 <tr><td>路線網絡</td><td>跨縣市（東京〜新青森 675km）</td><td>市內（約250km）</td></tr>
 </table>
@@ -338,6 +470,77 @@ html
   document.addEventListener("keydown", function(e) {
     if (e.key === "Escape") closeImg();
   });
+
+  // === 阻力模擬器 ===
+  const noseSlider = document.getElementById("noseSlider");
+  const noseVal = document.getElementById("noseVal");
+  const simNose = document.getElementById("simNose");
+  const simBody = document.getElementById("simBody");
+  const dragVal = document.getElementById("dragVal");
+  const noiseVal = document.getElementById("noiseVal");
+  const speedVal = document.getElementById("speedVal");
+
+  function updateSim() {
+    const len = parseFloat(noseSlider.value);
+    noseVal.textContent = len + " 米";
+    // 視覺：鼻長 3m → 20px, 22m → 140px
+    const nosePx = 20 + (len - 3) * (120 / 19);
+    simNose.style.width = nosePx + "px";
+    simBody.style.width = 80 + "px";
+    // 物理模型（簡化）：阻力 ∝ 1/√(鼻長)，基準 9m = 100%
+    const drag = Math.round(100 * Math.sqrt(9 / len));
+    dragVal.textContent = drag + "%";
+    // 噪音等級
+    if (len < 6) noiseVal.textContent = "高";
+    else if (len < 12) noiseVal.textContent = "中";
+    else if (len < 18) noiseVal.textContent = "低";
+    else noiseVal.textContent = "極低";
+    // 可行速度（簡化）
+    const spd = Math.min(400, Math.round(240 + (len - 3) * 8.2));
+    speedVal.textContent = spd;
+  }
+  noseSlider.addEventListener("input", updateSim);
+  updateSim();
+
+  // === 知識小測驗 ===
+  let score = 0, answered = 0;
+  function answer(btn, isCorrect) {
+    if (btn.disabled) return;
+    const opts = btn.parentElement.querySelectorAll(".quiz-btn");
+    opts.forEach(o => o.disabled = true);
+    if (isCorrect) {
+      btn.classList.add("correct");
+      score++;
+    } else {
+      btn.classList.add("wrong");
+      // 顯示正確答案
+      opts.forEach(o => {
+        if (o.onclick.toString().includes("true")) o.classList.add("correct");
+      });
+    }
+    answered++;
+    if (answered === 5) {
+      const res = document.getElementById("quizResult");
+      res.style.display = "block";
+      let msg, cls;
+      if (score === 5) { msg = "🏆 滿分！你係首席工程師！"; cls = "good"; }
+      else if (score >= 4) { msg = "🌟 好叻！你係小小工程師！"; cls = "good"; }
+      else if (score >= 3) { msg = "👍 唔錯！繼續努力！"; cls = "mid"; }
+      else { msg = "💪 再睇多次展覽，試多一次！"; cls = "bad"; }
+      res.className = "quiz-result " + cls;
+      res.textContent = "你答啱 " + score + "/5 題 — " + msg;
+      document.getElementById("quizReset").style.display = "inline-block";
+    }
+  }
+  function resetQuiz() {
+    score = 0; answered = 0;
+    document.querySelectorAll(".quiz-btn").forEach(o => {
+      o.disabled = false;
+      o.classList.remove("correct", "wrong");
+    });
+    document.getElementById("quizResult").style.display = "none";
+    document.getElementById("quizReset").style.display = "none";
+  }
 </script>
 </body>
 </html>
