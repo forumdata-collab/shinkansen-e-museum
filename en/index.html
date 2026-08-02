@@ -517,6 +517,8 @@ html
 <a class="kofi-btn" href="https://ko-fi.com/forumdata" target="_blank">
 <svg fill="white" viewbox="0 0 24 24"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.47.06 8.529-1.723 8.649-4.916zm-11.638 8.978c-2.252 0-4.078-1.826-4.078-4.078s1.826-4.078 4.078-4.078 4.078 1.826 4.078 4.078-4.078 4.078z"></path></svg>☕ Buy me a cup of coffee</a>
 </div>
+<div style="margin-top:16px">🔗Related websites:<a href="https://forumdata-collab.github.io/shinkansen-liners/">Comparison of Shinkansen four-color trains</a>·<a href="https://forumdata-collab.github.io/mtr-train-gallery/">Interdisciplinary Special Topics on MTR Trains</a>
+</div>
 <div class="credit">Source: Wikipedia (ALFA-X / E10 series) · JR East official press release (2025/3/4) · Lechigo! Tohoku, Japan (educational use) · Image: JR East official concept map + Wikimedia Commons (CC BY-SA/CC0)</div>
 </footer>
 <div id="lightbox" onclick="closeImg()">
@@ -596,7 +598,7 @@ html
       else if (st.score >= 2) { msg = "👍 不錯！繼續努力！"; cls = "mid"; }
       else { msg = "💪 再看一次展覽，試多一次！"; cls = "bad"; }
       res.className = "quiz-result " + cls;
-      res.textContent = "你答啱 " + st.score + "/" + total + " 題 — " + msg;
+      res.textContent = "你答對 " + st.score + "/" + total + " 題 — " + msg;
       document.getElementById("quizReset" + (level === "easy" ? "Easy" : "Hard")).style.display = "inline-block";
     }
   }
